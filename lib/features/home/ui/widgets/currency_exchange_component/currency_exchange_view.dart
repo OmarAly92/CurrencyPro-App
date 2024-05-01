@@ -1,6 +1,8 @@
-import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/currency_exchange_header.dart';
+import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/sliver_currencies_list.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+
+import 'currency_exchange_header.dart';
 
 class CurrencyExchangeView extends StatelessWidget {
   const CurrencyExchangeView({
@@ -13,10 +15,12 @@ class CurrencyExchangeView extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Center(
-          child: Column(
-            children: [
-              Gap(25),
-              CurrencyExchangeHeader(),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: Gap(25)),
+              SliverToBoxAdapter(child: CurrencyExchangeHeader()),
+              SliverToBoxAdapter(child: Gap(25)),
+              SliverCurrenciesList(),
             ],
           ),
         ),
