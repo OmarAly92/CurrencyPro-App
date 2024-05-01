@@ -1,4 +1,4 @@
-import 'package:currencypro/features/home/ui/currency_exchange_view.dart';
+import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/currency_exchange_view.dart';
 import 'package:currencypro/features/home/ui/gold_prices_view.dart';
 import 'package:flutter/material.dart';
 
