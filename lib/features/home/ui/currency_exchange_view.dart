@@ -65,6 +65,7 @@ class CurrencyExchangeView extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
+                            TextSpan()
                           ],
                         ),
                       ),
