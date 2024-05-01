@@ -1,8 +1,8 @@
-import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/sliver_currencies_list.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'currency_exchange_header.dart';
+import 'sliver_currencies_list.dart';
 
 class CurrencyExchangeView extends StatelessWidget {
   const CurrencyExchangeView({

@@ -1,10 +1,10 @@
+import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/sliver_currencies_list_header_row.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../data/model/currencies_list_item_model.dart';
 import 'currencies_list_item.dart';
-import 'sliver_currencies_list_title.dart';
 
 class SliverCurrenciesList extends StatelessWidget {
   const SliverCurrenciesList({
@@ -43,7 +43,7 @@ class SliverCurrenciesList extends StatelessWidget {
 
     return MultiSliver(
       children: [
-        const SliverCurrenciesListTitle(),
+        const SliverCurrenciesListHeaderRow(),
         const SliverToBoxAdapter(child: Gap(12)),
         SliverList.separated(
           itemCount: item.length,
