@@ -1,14 +1,13 @@
-import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/sliver_currencies_list_header_row.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../data/model/currencies_list_item_model.dart';
-import 'currencies_list_item.dart';
+import '../currency_exchange_component/currencies_list_item.dart';
 
-class SliverCurrenciesList extends StatelessWidget {
-  const SliverCurrenciesList({
+class GoldPricesView extends StatelessWidget {
+  const GoldPricesView({
     super.key,
   });
 
@@ -61,20 +60,25 @@ class SliverCurrenciesList extends StatelessWidget {
         ),
       ),
     ];
-
-    return MultiSliver(
-      children: [
-        const SliverCurrenciesListHeaderRow(),
-        const SliverToBoxAdapter(child: Gap(12)),
-        SliverList.separated(
-          itemCount: item.length,
-          separatorBuilder: (BuildContext context, int index) => const Gap(10),
-          itemBuilder: (context, index) {
-            return CurrenciesListItem(currenciesListItemModel: item[index]);
-          },
-        ),
-        const SliverToBoxAdapter(child: Gap(25)),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: CustomScrollView(
+        slivers: [
+          MultiSliver(
+            children: [
+              const SliverToBoxAdapter(child: Gap(20)),
+              SliverList.separated(
+                itemCount: item.length,
+                separatorBuilder: (BuildContext context, int index) => const Gap(10),
+                itemBuilder: (context, index) {
+                  return CurrenciesListItem(currenciesListItemModel: item[index]);
+                },
+              ),
+              const SliverToBoxAdapter(child: Gap(20)),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

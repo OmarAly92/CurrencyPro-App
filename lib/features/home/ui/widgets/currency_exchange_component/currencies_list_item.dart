@@ -38,10 +38,7 @@ class CurrenciesListItem extends StatelessWidget {
               ),
             ),
             child: Center(
-              child: Icon(
-                Icons.attach_money_rounded,
-                color: AppColors.appBlueColor,
-              ),
+              child: currenciesListItemModel.widget,
             ),
           ),
         ),

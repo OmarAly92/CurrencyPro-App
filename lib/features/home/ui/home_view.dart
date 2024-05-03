@@ -1,5 +1,5 @@
 import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/currency_exchange_view.dart';
-import 'package:currencypro/features/home/ui/gold_prices_view.dart';
+import 'package:currencypro/features/home/ui/widgets/gold_prices_component/gold_prices_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/app_text_style.dart';
