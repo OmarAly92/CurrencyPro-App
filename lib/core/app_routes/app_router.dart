@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/home/logic/currency_exchange_cubit.dart';
 import '../../features/home/ui/home_view.dart';
 import '../utils/app_strings.dart';
+import '../utils/service_locator.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -13,7 +14,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) {
             return BlocProvider(
-              create: (context) => CurrencyExchangeCubit(),
+              create: (context) => CurrencyExchangeCubit(sl()),
               child: const HomeView(),
             );
           },

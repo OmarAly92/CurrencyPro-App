@@ -6,13 +6,13 @@ abstract class CurrencyExchangeDataSource {
 }
 
 class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
-  const CurrencyExchangeDataSourceImp(this.dioConsumer);
+  const CurrencyExchangeDataSourceImp(this._dioConsumer);
 
-  final DioConsumer dioConsumer;
+  final DioConsumer _dioConsumer;
 
   @override
   Future<dynamic> getCurrencyExchange() async {
-    final response = await dioConsumer.get(
+    final response = await _dioConsumer.get(
       EndPoints.latest,
       queryParameters: {
         'symbols': 'EGP',
