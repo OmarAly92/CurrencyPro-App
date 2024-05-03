@@ -16,25 +16,59 @@ class CurrencyPriceAndCompareTexts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(
-          child: RichText(
-            text: TextSpan(
-              style: AppTextStyle.textStyle120.copyWith(
-                color: AppColors.appBlueColor,
-                fontWeight: FontWeight.w600,
-              ),
-              children: [
-                TextSpan(text: currencyExchangeModel.rates!['EGP']!.toStringAsFixed(2)),
-                TextSpan(
-                  text: 'EGP',
-                  style: AppTextStyle.textStyle10.copyWith(
-                    color: AppColors.appBlueColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
+        RichText(
+          text: TextSpan(
+            style: AppTextStyle.textStyle120.copyWith(
+              color: AppColors.appBlueColor,
+              fontWeight: FontWeight.w600,
             ),
+            children: [
+              TextSpan(text: currencyExchangeModel.rates!['EGP']!.endRate.toStringAsFixed(2)),
+              TextSpan(
+                text: 'EGP',
+                style: AppTextStyle.textStyle10.copyWith(
+                  color: AppColors.appBlueColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.keyboard_arrow_up,
+              color: AppColors.appGreenColor,
+              size: 22,
+            ),
+            RichText(
+              text: TextSpan(
+                style: AppTextStyle.textStyle10.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
+                children: [
+                  const TextSpan(text: 'Buying price'),
+                  const TextSpan(text: ' '),
+                  TextSpan(
+                    text: '48.33',
+                    style: AppTextStyle.textStyle10.copyWith(
+                      color: AppColors.appBlueColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const TextSpan(text: '  '),
+                  TextSpan(
+                    text: '+(0.05) Compared To The Last Price Yesterday',
+                    style: AppTextStyle.textStyle10.copyWith(
+                      color: AppColors.appGreenColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ],
     );

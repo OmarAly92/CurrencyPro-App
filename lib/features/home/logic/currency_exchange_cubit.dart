@@ -1,3 +1,4 @@
+import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,8 +15,26 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
 
   String symbols = 'EGP';
   String base = 'USD';
+  var dateTimeNow = DateTime.now();
+  var dateTimeYesterday = DateTime.now().subtract(const Duration(days: 1));
 
   Future<void> getCurrencyExchange() async {
+    emit(GetCurrencyExchangeLoading());
+    final result = await _currencyExchangeRepository.getCurrencyExchange(
+        parameters: CurrencyExchangeParametersModel(
+      symbols: symbols,
+      base: base,
+      startDate: AppConstants.dateFormat(dateTimeYesterday),
+      endDate: AppConstants.dateFormat(dateTimeNow),
+    ));
+    if (result.isSuccess) {
+      emit(GetCurrencyExchangeSuccess(currencyExchangeModel: result.value!));
+    } else {
+      emit(GetCurrencyExchangeFailure(failureMessage: result.error.message));
+    }
+  }
+
+  Future<void> getAllCurrencies() async {
     emit(GetCurrencyExchangeLoading());
     final result = await _currencyExchangeRepository.getCurrencyExchange(
         parameters: CurrencyExchangeParametersModel(

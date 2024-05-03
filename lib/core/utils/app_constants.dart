@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 
 import '../error/failures.dart';
 import 'app_colors.dart';
@@ -59,6 +60,11 @@ class AppConstants {
   static dynamic handleResponseAsJson(Response<dynamic> response) {
     final responseJson = jsonDecode(response.data.toString());
     return responseJson;
+  }
+
+  static String dateFormat(DateTime date) {
+    String result = DateFormat('yyyy-MM-dd').format(date);
+    return result;
   }
 
   static String getCountryNameBySymbol(String symbol) {

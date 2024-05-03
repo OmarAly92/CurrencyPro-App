@@ -8,6 +8,10 @@ abstract class CurrencyExchangeDataSource {
   Future<Response<dynamic>> getCurrencyExchange({
     required CurrencyExchangeParametersModel parameters,
   });
+
+  Future<Response<dynamic>> getAllCurrencies({
+    required CurrencyExchangeParametersModel parameters,
+  });
 }
 
 class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
@@ -15,14 +19,42 @@ class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
 
   final DioConsumer _dioConsumer;
 
+  // @override
+  // Future<Response<dynamic>> getCurrencyExchange({
+  //   required CurrencyExchangeParametersModel parameters,
+  // }) async {
+  //   final response = await _dioConsumer.get(
+  //     EndPoints.latest,
+  //     queryParameters: {
+  //       'symbols': parameters.symbols,
+  //       'base': parameters.base,
+  //     },
+  //   );
+  //   return response;
+  // }
   @override
   Future<Response<dynamic>> getCurrencyExchange({
     required CurrencyExchangeParametersModel parameters,
   }) async {
     final response = await _dioConsumer.get(
+      EndPoints.fluctuation,
+      queryParameters: {
+        'start_date': parameters.startDate,
+        'end_date': parameters.endDate,
+        'symbols': parameters.symbols,
+        'base': parameters.base,
+      },
+    );
+    return response;
+  }
+
+  @override
+  Future<Response> getAllCurrencies({
+    required CurrencyExchangeParametersModel parameters,
+  }) async {
+    final response = await _dioConsumer.get(
       EndPoints.latest,
       queryParameters: {
-        'symbols': parameters.symbols,
         'base': parameters.base,
       },
     );
