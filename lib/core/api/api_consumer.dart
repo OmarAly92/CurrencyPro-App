@@ -1,22 +1,24 @@
+import 'package:dio/dio.dart';
+
 abstract class ApiConsumer {
-  Future<dynamic> get(
+  Future<Response> get(
     String path, {
     Map<String, dynamic>? queryParameters,
   });
 
-  Future<dynamic> post(
-    String path, {
-    Map<String, dynamic>? body,
-    Map<String, dynamic>? queryParameters,
-  });
-
-  Future<dynamic> put(
+  Future<Response> post(
     String path, {
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
   });
 
-  Future<dynamic> delete(
+  Future<Response> put(
+    String path, {
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? queryParameters,
+  });
+
+  Future<Response> delete(
     String path, {
     Map<String, dynamic>? queryParameters,
   });

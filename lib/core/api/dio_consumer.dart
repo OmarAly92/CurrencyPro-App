@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-
 import 'package:currencypro/core/api/status_code.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
@@ -37,13 +36,13 @@ class DioConsumer implements ApiConsumer {
   final Dio client;
 
   @override
-  Future get(String path, {Map<String, dynamic>? queryParameters}) async {
+  Future<Response> get(String path, {Map<String, dynamic>? queryParameters}) async {
     final response = await client.get(path, queryParameters: queryParameters);
     return _handleResponseAsJson(response);
   }
 
   @override
-  Future post(
+  Future<Response> post(
     String path, {
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
@@ -58,13 +57,13 @@ class DioConsumer implements ApiConsumer {
   }
 
   @override
-  Future put(String path, {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters}) async {
+  Future<Response> put(String path, {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters}) async {
     final response = await client.put(path, queryParameters: queryParameters, data: body);
     return _handleResponseAsJson(response);
   }
 
   @override
-  Future delete(String path, {Map<String, dynamic>? queryParameters}) async {
+  Future<Response> delete(String path, {Map<String, dynamic>? queryParameters}) async {
     final response = await client.delete(path, queryParameters: queryParameters);
     return _handleResponseAsJson(response);
   }
