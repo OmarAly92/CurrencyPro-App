@@ -5,7 +5,7 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../data/model/currencies_list_item_model.dart';
-import 'currencies_list_item.dart';
+import '../currencies_list_item.dart';
 
 class SliverCurrenciesList extends StatelessWidget {
   const SliverCurrenciesList({

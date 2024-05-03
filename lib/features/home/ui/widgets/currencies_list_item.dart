@@ -2,7 +2,7 @@ import 'package:currencypro/core/utils/app_colors.dart';
 import 'package:currencypro/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/model/currencies_list_item_model.dart';
+import '../../data/model/currencies_list_item_model.dart';
 
 class CurrenciesListItem extends StatelessWidget {
   const CurrenciesListItem({
