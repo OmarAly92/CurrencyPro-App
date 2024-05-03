@@ -5,9 +5,7 @@ import 'currency_exchange_header_container.dart';
 import 'currency_price_and_compare_texts.dart';
 
 class CurrencyExchangeHeader extends StatelessWidget {
-  const CurrencyExchangeHeader({
-    super.key,
-  });
+  const CurrencyExchangeHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
