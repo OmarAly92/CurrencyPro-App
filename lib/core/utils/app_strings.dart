@@ -10,6 +10,7 @@ abstract class AppStrings {
   static const String success = 'success';
   static const String apikey = 'apikey';
   static const String apikeyValue = 'BGANarZDkNayrVdfAJL2K0tNxN4GDFOH';
+  static const String egp = 'EGP';
 
 // error handler
 }

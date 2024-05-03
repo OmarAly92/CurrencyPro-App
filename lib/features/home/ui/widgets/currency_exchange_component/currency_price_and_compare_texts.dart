@@ -1,9 +1,12 @@
 import 'package:currencypro/core/utils/app_colors.dart';
-import 'package:currencypro/core/utils/app_constants.dart';
+import 'package:currencypro/core/utils/app_strings.dart';
 import 'package:currencypro/core/utils/app_text_style.dart';
+import 'package:currencypro/features/home/logic/currency_exchange_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/model/currency_exchange_model.dart';
+import 'fluctuation_info_text.dart';
 
 class CurrencyPriceAndCompareTexts extends StatelessWidget {
   const CurrencyPriceAndCompareTexts({
@@ -25,9 +28,9 @@ class CurrencyPriceAndCompareTexts extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
               children: [
-                TextSpan(text: currencyExchangeModel.rates!['EGP']!.endRate.toStringAsFixed(2)),
+                TextSpan(text: currencyExchangeModel.rates![AppStrings.egp]!.endRate.toStringAsFixed(2)),
                 TextSpan(
-                  text: 'EGP',
+                  text: context.read<CurrencyExchangeCubit>().symbols,
                   style: AppTextStyle.textStyle10.copyWith(
                     color: AppColors.appBlueColor,
                     fontWeight: FontWeight.w600,
@@ -37,60 +40,8 @@ class CurrencyPriceAndCompareTexts extends StatelessWidget {
             ),
           ),
         ),
-        Builder(builder: (context) {
-          bool isNegativeNum = isNegative(currencyExchangeModel.rates!['EGP']!.changePct);
-          final isThereFluctuation = currencyExchangeModel.rates!['EGP']!.changePct.toStringAsFixed(2) == '0.00';
-          if (isThereFluctuation) {
-            return const SizedBox.shrink();
-          } else {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  isNegativeNum ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up,
-                  color: isNegativeNum ? AppColors.appRedColor : AppColors.appGreenColor,
-                  size: 22,
-                ),
-                RichText(
-                  text: TextSpan(
-                    style: AppTextStyle.textStyle10.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
-                    children: [
-                      const TextSpan(text: 'Buying price'),
-                      const TextSpan(text: ' '),
-                      TextSpan(
-                        text: currencyExchangeModel.rates!['EGP']!.endRate.toStringAsFixed(2),
-                        style: AppTextStyle.textStyle10.copyWith(
-                          color: AppColors.appBlueColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const TextSpan(text: '  '),
-                      TextSpan(
-                        text:
-                            '${AppConstants.currencyNumberPercentFormat(currencyExchangeModel.rates!['EGP']!.changePct)} Compared To The Last Price Yesterday',
-                        style: AppTextStyle.textStyle10.copyWith(
-                          color: isNegativeNum ? AppColors.appRedColor : AppColors.appGreenColor,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          }
-        }),
+        FluctuationInfoText(currencyExchangeModel: currencyExchangeModel),
       ],
     );
-  }
-
-  bool isNegative(num number) {
-    if (number < 0) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
