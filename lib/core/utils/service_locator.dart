@@ -1,8 +1,11 @@
+import 'package:currencypro/features/home/data/remote_data_source/currency_exchange_data_source.dart';
+import 'package:currencypro/features/home/data/repository/currency_exchange_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/home/logic/currency_exchange_cubit.dart';
 import '../api/api_consumer.dart';
 import '../api/app_interceptors.dart';
 import '../api/dio_consumer.dart';
@@ -13,19 +16,13 @@ final sl = GetIt.instance;
 Future<void> inIt() async {
   /// Features
   // Blocs
-
-  // sl.registerFactory(() => QuoteCubit(sl()));
-
-  // Use Cases
-
-  // sl.registerLazySingleton<GetRandomQuoteUseCases>(() => GetRandomQuoteUseCases(sl()));
-
+  sl.registerFactory(() => CurrencyExchangeCubit(sl()));
 
   // Repository
-
+  sl.registerLazySingleton<CurrencyExchangeRepository>(() => CurrencyExchangeRepositoryImp(sl()));
 
   // Data Sources
-
+  sl.registerLazySingleton<CurrencyExchangeDataSource>(() => CurrencyExchangeDataSourceImp(sl()));
 
   /// Core
   sl.registerLazySingleton<NetworkStatus>(() => NetworkStatusImp(sl()));
