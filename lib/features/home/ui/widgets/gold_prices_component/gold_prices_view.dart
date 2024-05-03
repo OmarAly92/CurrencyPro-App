@@ -59,6 +59,78 @@ class GoldPricesView extends StatelessWidget {
           color: AppColors.appBlueColor,
         ),
       ),
+      const CurrenciesListItemModel(
+        currencyName: 'United States Dollar',
+        buyPrice: '48.33',
+        sellPrice: '48.08',
+        widget: Icon(
+          Icons.attach_money_rounded,
+          color: AppColors.appBlueColor,
+        ),
+      ),
+      const CurrenciesListItemModel(
+        currencyName: 'United States Dollar',
+        buyPrice: '48.33',
+        sellPrice: '48.08',
+        widget: Icon(
+          Icons.attach_money_rounded,
+          color: AppColors.appBlueColor,
+        ),
+      ),
+      const CurrenciesListItemModel(
+        currencyName: 'United States Dollar',
+        buyPrice: '48.33',
+        sellPrice: '48.08',
+        widget: Icon(
+          Icons.attach_money_rounded,
+          color: AppColors.appBlueColor,
+        ),
+      ),
+      const CurrenciesListItemModel(
+        currencyName: 'United States Dollar',
+        buyPrice: '48.33',
+        sellPrice: '48.08',
+        widget: Icon(
+          Icons.attach_money_rounded,
+          color: AppColors.appBlueColor,
+        ),
+      ),
+      const CurrenciesListItemModel(
+        currencyName: 'United States Dollar',
+        buyPrice: '48.33',
+        sellPrice: '48.08',
+        widget: Icon(
+          Icons.attach_money_rounded,
+          color: AppColors.appBlueColor,
+        ),
+      ),
+      const CurrenciesListItemModel(
+        currencyName: 'United States Dollar',
+        buyPrice: '48.33',
+        sellPrice: '48.08',
+        widget: Icon(
+          Icons.attach_money_rounded,
+          color: AppColors.appBlueColor,
+        ),
+      ),
+      const CurrenciesListItemModel(
+        currencyName: 'United States Dollar',
+        buyPrice: '48.33',
+        sellPrice: '48.08',
+        widget: Icon(
+          Icons.attach_money_rounded,
+          color: AppColors.appBlueColor,
+        ),
+      ),
+      const CurrenciesListItemModel(
+        currencyName: 'United States Dollar',
+        buyPrice: '48.33',
+        sellPrice: '48.08',
+        widget: Icon(
+          Icons.attach_money_rounded,
+          color: AppColors.appBlueColor,
+        ),
+      ),
     ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
