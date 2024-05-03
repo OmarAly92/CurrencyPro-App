@@ -5,10 +5,13 @@ import '../../../../core/api/result.dart';
 import '../../../../core/error/error_handler.dart';
 import '../../../../core/utils/service_locator.dart';
 import '../model/currency_exchange_model.dart';
+import '../model/currency_exchange_parameters_model.dart';
 import '../remote_data_source/currency_exchange_data_source.dart';
 
 abstract class CurrencyExchangeRepository {
-  Future<Result<CurrencyExchangeModel>> getCurrencyExchange();
+  Future<Result<CurrencyExchangeModel>> getCurrencyExchange({
+    required CurrencyExchangeParametersModel parameters,
+  });
 }
 
 class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
@@ -18,9 +21,11 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
   final CurrencyExchangeDataSource _currencyExchangeDataSource;
 
   @override
-  Future<Result<CurrencyExchangeModel>> getCurrencyExchange() async {
+  Future<Result<CurrencyExchangeModel>> getCurrencyExchange({
+    required CurrencyExchangeParametersModel parameters,
+  }) async {
     try {
-      final rawData = await _currencyExchangeDataSource.getCurrencyExchange();
+      final rawData = await _currencyExchangeDataSource.getCurrencyExchange(parameters: parameters);
       final result = CurrencyExchangeModel.fromJson(AppConstants.handleResponseAsJson(rawData));
       return Result.success(result);
     } catch (error) {

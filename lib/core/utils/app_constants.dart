@@ -61,6 +61,14 @@ class AppConstants {
     return responseJson;
   }
 
+  static String getCountryNameBySymbol(String symbol) {
+    if (symbol == 'EGP') {
+      return 'Egypt';
+    } else {
+      return 'unknown';
+    }
+  }
+
   static String mapFailureMsg(Failure failure) {
     if (failure is ServerException) {
       return failure.message ?? AppStrings.unexpectedError;
