@@ -5,6 +5,10 @@ abstract class AppTextStyle {
     fontSize: 10,
     fontWeight: FontWeight.normal,
   );
+  static const TextStyle textStyle11 = TextStyle(
+    fontSize: 11,
+    fontWeight: FontWeight.normal,
+  );
   static const TextStyle textStyle12 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.normal,
