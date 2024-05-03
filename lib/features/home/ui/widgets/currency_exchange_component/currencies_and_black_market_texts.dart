@@ -14,39 +14,12 @@ class CurrenciesAndBlackMarketTexts extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'USD / EGP',
-                style: AppTextStyle.textStyle19.copyWith(
-                  color: AppColors.appBlueColor,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              IconButton(
-                style: ElevatedButton.styleFrom(
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (context) => const Column(
-                      children: [
-                        SizedBox(
-                          height: 200,
-                          width: double.maxFinite,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                icon: Icon(
-                  Icons.currency_exchange,
-                  color: AppColors.appBlueColor,
-                ),
-              ),
-            ],
+          child: Text(
+            'USD / EGP',
+            style: AppTextStyle.textStyle19.copyWith(
+              color: AppColors.appBlueColor,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
         const SizedBox(height: 10),
