@@ -67,6 +67,16 @@ class AppConstants {
     return result;
   }
 
+  static String currencyNumberPercentFormat(num number) {
+    String formattedNumber;
+    if (number >= 0) {
+      formattedNumber = '+(${number.toStringAsFixed(2)})';
+    } else {
+      formattedNumber = '-(${number.abs().toStringAsFixed(2)})';
+    }
+    return formattedNumber;
+  }
+
   static String getCountryNameBySymbol(String symbol) {
     if (symbol == 'EGP') {
       return 'Egypt';
