@@ -13,49 +13,53 @@ class HomeView extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Today\'s Souq',
-            style: AppTextStyle.textStyle23,
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: IconButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (context) => const Column(
-                      children: [
-                        SizedBox(
-                          height: 200,
-                          width: double.maxFinite,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                icon: const Icon(
-                  Icons.currency_exchange,
-                  color: AppColors.appBlueColor,
-                ),
-              ),
-            ),
-          ],
-          flexibleSpace: const FlexibleSpaceBar(),
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: 'Currency Exchange'),
-              Tab(text: 'Gold Prices'),
-            ],
-          ),
-        ),
+        appBar: buildAppBar(context),
         body: const TabBarView(
           children: [
             CurrencyExchangeView(),
             GoldPricesView(),
           ],
         ),
+      ),
+    );
+  }
+
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+      title: const Text(
+        'Today\'s Souq',
+        style: AppTextStyle.textStyle23,
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => const Column(
+                  children: [
+                    SizedBox(
+                      height: 200,
+                      width: double.maxFinite,
+                    ),
+                  ],
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.currency_exchange,
+              color: AppColors.appBlueColor,
+            ),
+          ),
+        ),
+      ],
+      flexibleSpace: const FlexibleSpaceBar(),
+      bottom: const TabBar(
+        tabs: [
+          Tab(text: 'Currency Exchange'),
+          Tab(text: 'Gold Prices'),
+        ],
       ),
     );
   }

@@ -1,7 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:currencypro/core/api/status_code.dart';
+import 'package:currencypro/core/utils/app_strings.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
@@ -23,6 +23,9 @@ class DioConsumer implements ApiConsumer {
       ..baseUrl = EndPoints.baseUrl
       ..responseType = ResponseType.plain
       ..followRedirects = false
+      ..headers = {
+        AppStrings.apikey: AppStrings.apikeyValue,
+      }
       ..validateStatus = (status) {
         return status! < StatusCode.internalServerError;
       };
@@ -38,7 +41,7 @@ class DioConsumer implements ApiConsumer {
   @override
   Future<Response> get(String path, {Map<String, dynamic>? queryParameters}) async {
     final response = await client.get(path, queryParameters: queryParameters);
-    return _handleResponseAsJson(response);
+    return response;
   }
 
   @override
@@ -53,24 +56,19 @@ class DioConsumer implements ApiConsumer {
       queryParameters: queryParameters,
       data: formDataIsEnabled ? FormData.fromMap(body!) : body,
     );
-    return _handleResponseAsJson(response);
+    return response;
   }
 
   @override
   Future<Response> put(String path, {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters}) async {
     final response = await client.put(path, queryParameters: queryParameters, data: body);
-    return _handleResponseAsJson(response);
+    return response;
   }
 
   @override
   Future<Response> delete(String path, {Map<String, dynamic>? queryParameters}) async {
     final response = await client.delete(path, queryParameters: queryParameters);
-    return _handleResponseAsJson(response);
-  }
-
-  dynamic _handleResponseAsJson(Response<dynamic> response) {
-    final responseJson = jsonDecode(response.data.toString());
-    return responseJson;
+    return response;
   }
 
   ServerException handleDioError(DioException error) {

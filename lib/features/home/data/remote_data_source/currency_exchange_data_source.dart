@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
+
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
 
 abstract class CurrencyExchangeDataSource {
-  Future<dynamic> getCurrencyExchange();
+  Future<Response<dynamic>> getCurrencyExchange();
 }
 
 class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
@@ -11,7 +13,7 @@ class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
   final DioConsumer _dioConsumer;
 
   @override
-  Future<dynamic> getCurrencyExchange() async {
+  Future<Response<dynamic>> getCurrencyExchange() async {
     final response = await _dioConsumer.get(
       EndPoints.latest,
       queryParameters: {
@@ -19,6 +21,6 @@ class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
         'base': 'USD',
       },
     );
-    return response.data;
+    return response;
   }
 }

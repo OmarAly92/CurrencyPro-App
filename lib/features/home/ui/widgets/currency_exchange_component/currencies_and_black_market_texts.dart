@@ -6,7 +6,6 @@ class CurrenciesAndBlackMarketTexts extends StatelessWidget {
   const CurrenciesAndBlackMarketTexts({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return Column(

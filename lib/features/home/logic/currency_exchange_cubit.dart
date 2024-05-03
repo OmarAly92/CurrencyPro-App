@@ -11,6 +11,9 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
 
   final CurrencyExchangeRepository _currencyExchangeRepository;
 
+  String symbol = 'EGP';
+  String base = 'USD';
+
   Future<void> getCurrencyExchange() async {
     emit(GetCurrencyExchangeLoading());
     final result = await _currencyExchangeRepository.getCurrencyExchange();

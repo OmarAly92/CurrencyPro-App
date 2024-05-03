@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -5,7 +8,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../error/failures.dart';
 import 'app_colors.dart';
 import 'app_strings.dart';
-
 
 class AppConstants {
   static void showErrorDialog(
@@ -54,6 +56,11 @@ class AppConstants {
     );
   }
 
+  static dynamic handleResponseAsJson(Response<dynamic> response) {
+    final responseJson = jsonDecode(response.data.toString());
+    return responseJson;
+  }
+
   static String mapFailureMsg(Failure failure) {
     if (failure is ServerException) {
       return failure.message ?? AppStrings.unexpectedError;
@@ -64,5 +71,3 @@ class AppConstants {
     }
   }
 }
-
-
