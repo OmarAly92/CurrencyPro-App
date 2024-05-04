@@ -36,10 +36,10 @@ class CurrencyExchangeModel extends Equatable {
 }
 
 class CurrencyRates extends Equatable {
-  final double startRate;
-  final double endRate;
-  final double change;
-  final double changePct;
+  final num startRate;
+  final num endRate;
+  final num change;
+  final num changePct;
 
   const CurrencyRates({
     required this.startRate,
