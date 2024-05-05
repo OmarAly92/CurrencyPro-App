@@ -1,12 +1,9 @@
-import 'package:currencypro/core/utils/app_colors.dart';
-import 'package:currencypro/core/utils/app_text_style.dart';
 import 'package:currencypro/core/utils/global.dart';
-import 'package:currencypro/core/widgets/app_button.dart';
-import 'package:currencypro/core/widgets/app_text_field.dart';
-import 'package:currencypro/core/widgets/bottom_sheet_container.dart';
+import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/convert_currency_bottom_sheet_button.dart';
+import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/convert_currency_bottom_sheet_fields.dart';
+import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/convert_result_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 class ConvertCurrencyBottomSheet extends StatefulWidget {
   const ConvertCurrencyBottomSheet({
@@ -47,99 +44,13 @@ class _ConvertCurrencyBottomSheetState extends State<ConvertCurrencyBottomSheet>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Gap(15),
-                const BottomSheetContainer.centered(),
-                const Gap(15),
-                Text(
-                  'Convert Money',
-                  style: AppTextStyle.textStyle17.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const Gap(10),
-                AppTextField(
-                  controller: convertController,
-                  hint: 'Enter Your Number',
-                ),
-                const Gap(15),
-                Row(
-                  children: [
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'From',
-                            style: AppTextStyle.textStyle17.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const Gap(10),
-                          AppTextField(
-                            controller: fromController,
-                            hint: 'Enter Your Number',
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Gap(15),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'To',
-                            style: AppTextStyle.textStyle17.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const Gap(10),
-                          AppTextField(
-                            controller: toController,
-                            hint: 'Enter Your Number',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+            ConvertCurrencyBottomSheetFields(
+              convertController: convertController,
+              fromController: fromController,
+              toController: toController,
             ),
-            Center(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: RichText(
-                  text: TextSpan(
-                    style: AppTextStyle.textStyle120.copyWith(
-                      color: AppColors.appBlueColor,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      const TextSpan(text: '0.00'),
-                      TextSpan(
-                        text: symbols,
-                        style: AppTextStyle.textStyle10.copyWith(
-                          color: AppColors.appBlueColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Column(
-              children: [
-                AppButton.expand(
-                  text: 'Convert',
-                  onPressed: () {},
-                ),
-                const Gap(10),
-              ],
-            ),
+            const ConvertResultText(),
+            const ConvertCurrencyBottomSheetButton(),
           ],
         ),
       ),

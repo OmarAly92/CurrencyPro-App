@@ -5,7 +5,8 @@ abstract class EndPoints {
   static const String exchangeBaseUrl = 'https://api.apilayer.com/exchangerates_data';
   static const String latest = '/latest';
   static const String fluctuation = '/fluctuation';
-  static const List<String> currenciesExchangeEndPoints = [latest, fluctuation];
+  static const String convert = '/convert';
+  static const List<String> currenciesExchangeEndPoints = [latest, fluctuation, convert];
 
   /// Gold Price Api
   static const String headerKeyGoldPrice = 'x-access-token';
