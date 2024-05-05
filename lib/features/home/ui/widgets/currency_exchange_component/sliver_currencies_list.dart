@@ -1,13 +1,13 @@
 import 'package:currencypro/core/utils/app_constants.dart';
-import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/sliver_currencies_list_header_row.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../core/utils/app_colors.dart';
-import '../../../data/model/all_currencies_model.dart';
+import '../../../data/model/currency_exchange_models/all_currencies_model.dart';
 import '../../../data/model/currencies_list_item_model.dart';
 import '../currencies_list_item.dart';
+import 'sliver_currencies_list_header_row.dart';
 
 class SliverCurrenciesList extends StatelessWidget {
   const SliverCurrenciesList({

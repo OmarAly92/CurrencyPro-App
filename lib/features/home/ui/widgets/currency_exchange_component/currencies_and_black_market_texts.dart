@@ -1,7 +1,7 @@
 import 'package:currencypro/core/utils/app_colors.dart';
 import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:currencypro/core/utils/app_text_style.dart';
-import 'package:currencypro/features/home/logic/currency_exchange_cubit.dart';
+import 'package:currencypro/features/home/logic/currency_exchange_cubit/currency_exchange_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

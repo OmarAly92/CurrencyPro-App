@@ -4,9 +4,9 @@ import 'package:logger/logger.dart';
 import '../../../../core/api/result.dart';
 import '../../../../core/error/error_handler.dart';
 import '../../../../core/utils/service_locator.dart';
-import '../model/all_currencies_model.dart';
+import '../model/currency_exchange_models/all_currencies_model.dart';
+import '../model/currency_exchange_models/fluctuation_currencies_model.dart';
 import '../model/currency_exchange_parameters_model.dart';
-import '../model/fluctuation_currencies_model.dart';
 import '../remote_data_source/currency_exchange_data_source.dart';
 
 abstract class CurrencyExchangeRepository {

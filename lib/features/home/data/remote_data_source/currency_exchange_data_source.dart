@@ -19,20 +19,6 @@ class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
 
   final DioConsumer _dioConsumer;
 
-  // @override
-  // Future<Response<dynamic>> getCurrencyExchange({
-  //   required CurrencyExchangeParametersModel parameters,
-  // }) async {
-  //   final response = await _dioConsumer.get(
-  //     EndPoints.latest,
-  //     queryParameters: {
-  //       'symbols': parameters.symbols,
-  //       'base': parameters.base,
-  //     },
-  //   );
-  //   return response;
-  // }
-
   @override
   Future<Response<dynamic>> getCurrencyExchange({
     required CurrencyExchangeParametersModel parameters,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
-import '../logic/currency_exchange_cubit.dart';
+import '../logic/currency_exchange_cubit/currency_exchange_cubit.dart';
 import 'widgets/currency_exchange_component/currency_exchange_header.dart';
 import 'widgets/currency_exchange_component/sliver_currencies_list.dart';
 

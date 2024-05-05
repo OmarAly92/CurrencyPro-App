@@ -1,12 +1,12 @@
 import 'package:currencypro/core/api/result.dart';
 import 'package:currencypro/core/utils/app_constants.dart';
-import 'package:currencypro/features/home/data/model/all_currencies_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../data/model/currency_exchange_parameters_model.dart';
-import '../data/model/fluctuation_currencies_model.dart';
-import '../data/repository/currency_exchange_repository.dart';
+import '../../data/model/currency_exchange_models/all_currencies_model.dart';
+import '../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
+import '../../data/model/currency_exchange_parameters_model.dart';
+import '../../data/repository/currency_exchange_repository.dart';
 
 part 'currency_exchange_state.dart';
 
