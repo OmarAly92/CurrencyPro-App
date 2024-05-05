@@ -16,12 +16,7 @@ class CurrenciesListItemShimmer extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           boxShadow: const [
-            BoxShadow(
-              color: Colors.black45,
-              spreadRadius: .2,
-              blurRadius: 2,
-              offset: Offset(2, 2),
-            ),
+            BoxShadow(color: Colors.black45),
           ],
         ),
         child: ListTile(
