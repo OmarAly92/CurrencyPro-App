@@ -20,7 +20,6 @@ class SliverCurrenciesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> currenciesCode = AppConstants.getCurrenciesCode();
-
     return MultiSliver(
       children: [
         const SliverCurrenciesListHeaderRow(),

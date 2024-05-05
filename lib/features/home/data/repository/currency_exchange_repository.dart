@@ -5,8 +5,8 @@ import '../../../../core/api/result.dart';
 import '../../../../core/error/error_handler.dart';
 import '../../../../core/utils/service_locator.dart';
 import '../model/all_currencies_model.dart';
-import '../model/fluctuation_currencies_model.dart';
 import '../model/currency_exchange_parameters_model.dart';
+import '../model/fluctuation_currencies_model.dart';
 import '../remote_data_source/currency_exchange_data_source.dart';
 
 abstract class CurrencyExchangeRepository {
@@ -29,13 +29,19 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
   Future<Result<FluctuationCurrenciesModel>> getCurrencyExchange({
     required CurrencyExchangeParametersModel parameters,
   }) async {
+    int? statusCode;
     try {
-      final rawData = await _currencyExchangeDataSource.getCurrencyExchange(parameters: parameters);
-      final result = FluctuationCurrenciesModel.fromJson(AppConstants.handleResponseAsJson(rawData));
-      return Result.success(result);
+      final response = await _currencyExchangeDataSource.getCurrencyExchange(parameters: parameters);
+      statusCode = response.statusCode;
+      if (statusCode == 200) {
+        final result = FluctuationCurrenciesModel.fromJson(AppConstants.handleResponseAsJson(response));
+        return Result.success(result);
+      } else {
+        throw Exception(response.data['message']);
+      }
     } catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error).failure);
+      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failure);
     }
   }
 
@@ -43,13 +49,20 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
   Future<Result<AllCurrenciesModel>> getAllCurrencies({
     required CurrencyExchangeParametersModel parameters,
   }) async {
+    int? statusCode;
+
     try {
-      final rawData = await _currencyExchangeDataSource.getAllCurrencies(parameters: parameters);
-      final result = AllCurrenciesModel.fromJson(AppConstants.handleResponseAsJson(rawData));
-      return Result.success(result);
+      final response = await _currencyExchangeDataSource.getAllCurrencies(parameters: parameters);
+      statusCode = response.statusCode;
+      if (statusCode == 200) {
+        final result = AllCurrenciesModel.fromJson(AppConstants.handleResponseAsJson(response));
+        return Result.success(result);
+      } else {
+        throw Exception(response.data['message']);
+      }
     } catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error).failure);
+      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failure);
     }
   }
 }

@@ -8,15 +8,25 @@ class Failures {
 }
 
 class ErrorHandler implements Exception {
-  ErrorHandler.handle(dynamic error) {
+  late Failures failure;
+
+  ErrorHandler.handle(dynamic error, {int? statusCode}) {
     if (error is DioException) {
       failure = _handleError(error);
+    } else if (statusCode != null && statusCode == 400) {
+      failure = DataSource.badRequest.getFailure();
+    } else if (statusCode != null && statusCode == 401) {
+      failure = DataSource.unauthorised.getFailure();
+    } else if (statusCode != null && statusCode == 404) {
+      failure = DataSource.notFound.getFailure();
+    } else if (statusCode != null && statusCode == 429) {
+      failure = DataSource.tooManyRequest.getFailure();
+    } else if (statusCode != null && statusCode == 500) {
+      failure = DataSource.internalServerError.getFailure();
     } else {
       failure = DataSource.kDefault.getFailure();
     }
   }
-
-  late Failures failure;
 
   Failures _handleError(DioException error) {
     switch (error.type) {
@@ -48,6 +58,7 @@ enum DataSource {
   badRequest,
   forbidden,
   unauthorised,
+  tooManyRequest,
   notFound,
   internalServerError,
   connectionTimeout,
@@ -88,6 +99,9 @@ extension DataSourceExtension on DataSource {
         return Failures(ResponseCode.cacheError, ResponseMessage.cacheError);
       case DataSource.noInternetConnection:
         return Failures(ResponseCode.noInternetConnection, ResponseMessage.noInternetConnection);
+      case DataSource.tooManyRequest:
+        return Failures(ResponseCode.tooManyRequest, ResponseMessage.tooManyRequest);
+
       case DataSource.kDefault:
         return Failures(ResponseCode.kDefault, ResponseMessage.kDefault);
     }
@@ -123,6 +137,10 @@ class ResponseCode {
 
   static const int notFound = 404;
 
+  /// too many request
+
+  static const int tooManyRequest = 429;
+
   /// local status code
   static const int connectionTimeout = -1;
   static const int cancel = -2;
@@ -134,41 +152,38 @@ class ResponseCode {
 }
 
 class ResponseMessage {
-  static const String success = AppStringsWithoutLocale.success;
-  static const String noContent = AppStringsWithoutLocale.success;
-  static const String badRequest = AppStringsWithoutLocale.badRequestError;
-  static const String unauthorised = AppStringsWithoutLocale.unauthorizedError;
-  static const String forbidden = AppStringsWithoutLocale.forbiddenError;
-  static const String internalServerError = AppStringsWithoutLocale.internalServerError;
-  static const String notFound = AppStringsWithoutLocale.notFoundError;
+  static const String success = ErrorStrings.success;
+  static const String noContent = ErrorStrings.success;
+  static const String badRequest = ErrorStrings.badRequestError;
+  static const String unauthorised = ErrorStrings.unauthorizedError;
+  static const String forbidden = ErrorStrings.forbiddenError;
+  static const String internalServerError = ErrorStrings.internalServerError;
+  static const String notFound = ErrorStrings.notFoundError;
 
   /// local status message
-  static const String connectionTimeout = AppStringsWithoutLocale.timeoutError;
-  static const String cancel = AppStringsWithoutLocale.defaultError;
-  static const String receiveTimeout = AppStringsWithoutLocale.timeoutError;
-  static const String sendTimeout = AppStringsWithoutLocale.timeoutError;
-  static const String cacheError = AppStringsWithoutLocale.cacheError;
-  static const String noInternetConnection = AppStringsWithoutLocale.noInternetError;
-  static const String kDefault = AppStringsWithoutLocale.defaultError;
+  static const String connectionTimeout = ErrorStrings.timeoutError;
+  static const String cancel = ErrorStrings.defaultError;
+  static const String receiveTimeout = ErrorStrings.timeoutError;
+  static const String sendTimeout = ErrorStrings.timeoutError;
+  static const String cacheError = ErrorStrings.cacheError;
+  static const String noInternetConnection = ErrorStrings.noInternetError;
+  static const String kDefault = ErrorStrings.defaultError;
+  static const String tooManyRequest = ErrorStrings.tooManyRequest;
 }
 
-class ApiInternalStatus {
-  static const int success = 200;
-  static const int failure = 400;
-}
-
-class AppStringsWithoutLocale {
-  static const String badRequestError = 'Bad request error';
-  static const String noContent = 'No content';
-  static const String forbiddenError = 'Forbidden error';
-  static const String unauthorizedError = 'Unauthorized error';
-  static const String notFoundError = 'Not found error';
-  static const String conflictError = 'Conflict error';
-  static const String internalServerError = 'Internal server error';
-  static const String unknownError = 'Unknown error';
-  static const String timeoutError = 'Timeout error';
-  static const String defaultError = 'Default error';
-  static const String cacheError = 'Cache error';
-  static const String noInternetError = 'No internet error';
-  static const String success = 'Success';
+class ErrorStrings {
+  static const String badRequestError = 'The request was unacceptable, often due to missing a required parameter.';
+  static const String noContent = 'No content was returned.';
+  static const String forbiddenError = 'Access to the requested resource is forbidden.';
+  static const String unauthorizedError = 'Authentication credentials are missing or incorrect.';
+  static const String notFoundError = 'The requested resource could not be found.';
+  static const String conflictError = 'There was a conflict while processing the request.';
+  static const String internalServerError = 'The server encountered an internal error.';
+  static const String unknownError = 'An unknown error occurred.';
+  static const String timeoutError = 'The request timed out while waiting for a response.';
+  static const String defaultError = 'An error occurred while processing the request.';
+  static const String cacheError = 'There was an error accessing cached data.';
+  static const String noInternetError = 'No internet connection available.';
+  static const String tooManyRequest = 'API request limit exceeded. Please try again later.';
+  static const String success = 'The operation was successful.';
 }
