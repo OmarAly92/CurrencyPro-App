@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
 class CurrencyExchangeParametersModel extends Equatable {
-  final String symbols;
+  final String? symbols;
   final String base;
   final String? startDate;
   final String? endDate;
 
   const CurrencyExchangeParametersModel({
-    required this.symbols,
+    this.symbols,
     required this.base,
     this.startDate,
     this.endDate,
@@ -15,7 +15,7 @@ class CurrencyExchangeParametersModel extends Equatable {
 
   @override
   List<Object> get props => [
-        symbols,
+        symbols!,
         base,
         startDate!,
         endDate!,

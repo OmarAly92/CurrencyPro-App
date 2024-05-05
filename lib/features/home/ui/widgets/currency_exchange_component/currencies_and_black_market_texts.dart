@@ -19,7 +19,7 @@ class CurrenciesAndBlackMarketTexts extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Text(
-            '${currencyExchangeCubit.base} / ${currencyExchangeCubit.symbols}',
+            '${currencyExchangeCubit.fluctuationBase} / ${currencyExchangeCubit.symbols}',
             style: AppTextStyle.textStyle19.copyWith(
               color: AppColors.appBlueColor,
               fontWeight: FontWeight.w600,

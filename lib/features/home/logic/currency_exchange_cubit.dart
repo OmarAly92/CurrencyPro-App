@@ -15,8 +15,9 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
 
   final CurrencyExchangeRepository _currencyExchangeRepository;
 
+  String fluctuationBase = 'USD';
   String symbols = 'EGP';
-  String base = 'EGP';
+  String allCurrenciesBase = 'EGP';
   var dateTimeNow = DateTime.now();
   var dateTimeYesterday = DateTime.now().subtract(const Duration(days: 1));
 
@@ -38,7 +39,7 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
     final result = await _currencyExchangeRepository.getCurrencyExchange(
         parameters: CurrencyExchangeParametersModel(
       symbols: symbols,
-      base: base,
+      base: fluctuationBase,
       startDate: AppConstants.dateFormat(dateTimeYesterday),
       endDate: AppConstants.dateFormat(dateTimeNow),
     ));
@@ -48,8 +49,7 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
   Future<Result<AllCurrenciesModel>> _getAllCurrencies() async {
     final result = await _currencyExchangeRepository.getAllCurrencies(
         parameters: CurrencyExchangeParametersModel(
-      symbols: symbols,
-      base: base,
+      base: allCurrenciesBase,
     ));
     return result;
   }
