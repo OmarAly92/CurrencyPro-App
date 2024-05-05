@@ -1,3 +1,4 @@
+import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/currency_exchange_loading_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -33,18 +34,9 @@ class _CurrencyExchangeViewState extends State<CurrencyExchangeView> {
             slivers: [
               BlocBuilder<CurrencyExchangeCubit, CurrencyExchangeState>(
                 builder: (context, state) {
-                  if (state is GetCurrencyExchangeLoading) {
-                    return const SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox.shrink(),
-                          CircularProgressIndicator(),
-                          SizedBox(height: 50),
-                        ],
-                      ),
-                    );
+                  // if (state is GetCurrencyExchangeLoading) {
+                  if (state is GetCurrencyExchangeFailure) {
+                    return const SliverFillRemaining(child: CurrencyExchangeLoadingShimmer());
                   } else if (state is GetCurrencyExchangeSuccess) {
                     return MultiSliver(
                       children: [

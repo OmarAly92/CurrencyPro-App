@@ -40,6 +40,8 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   # A collection of loading indicators animated with flutter. Heavily
   flutter_spinkit: ^5.2.1
+  # A package provides an easy way to add shimmer effect in Flutter project
+  shimmer: ^3.0.0
 
 
 
