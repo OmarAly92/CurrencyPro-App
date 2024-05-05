@@ -30,8 +30,7 @@ class _GoldPricesViewState extends State<GoldPricesView> {
             BlocBuilder<GoldPriceCubit, GoldPriceState>(
               builder: (context, state) {
                 if (state is GetGoldPriceLoading) {
-                  return const SliverFillRemaining(
-                    hasScrollBody: false,
+                  return const SliverToBoxAdapter(
                     child: GetGoldPriceLoadingShimmer(),
                   );
                 } else if (state is GetGoldPriceSuccess) {
