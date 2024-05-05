@@ -1,11 +1,9 @@
 import 'package:currencypro/core/utils/app_colors.dart';
-import 'package:currencypro/core/utils/app_strings.dart';
 import 'package:currencypro/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/utils/global.dart';
 import '../../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
-import '../../../logic/currency_exchange_cubit/currency_exchange_cubit.dart';
 import 'fluctuation_info_text.dart';
 
 class CurrencyPriceAndCompareTexts extends StatelessWidget {
@@ -28,9 +26,9 @@ class CurrencyPriceAndCompareTexts extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
               children: [
-                TextSpan(text: currencyExchangeModel.rates![AppStrings.egp]!.endRate.toStringAsFixed(2)),
+                TextSpan(text: currencyExchangeModel.rates![symbols]!.endRate.toStringAsFixed(2)),
                 TextSpan(
-                  text: context.read<CurrencyExchangeCubit>().symbols,
+                  text: symbols,
                   style: AppTextStyle.textStyle10.copyWith(
                     color: AppColors.appBlueColor,
                     fontWeight: FontWeight.w600,

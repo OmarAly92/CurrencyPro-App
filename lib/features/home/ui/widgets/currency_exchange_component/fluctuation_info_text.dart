@@ -4,6 +4,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_constants.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_text_style.dart';
+import '../../../../../core/utils/global.dart';
 import '../../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
 
 class FluctuationInfoText extends StatelessWidget {
@@ -58,11 +59,11 @@ class FluctuationInfoText extends StatelessWidget {
     }
   }
 
-  bool getIsNegativeNum() => isNegative(currencyExchangeModel.rates![AppStrings.egp]!.changePct);
+  bool getIsNegativeNum() => isNegative(currencyExchangeModel.rates![symbols]!.changePct);
 
   bool getIsThereFluctuation() {
     return (currencyExchangeModel.fluctuation &&
-        currencyExchangeModel.rates![AppStrings.egp]!.changePct.toStringAsFixed(2) == '0.00');
+        currencyExchangeModel.rates![symbols]!.changePct.toStringAsFixed(2) == '0.00');
   }
 
   bool isNegative(num number) {

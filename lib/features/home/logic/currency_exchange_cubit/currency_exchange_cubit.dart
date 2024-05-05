@@ -3,6 +3,7 @@ import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/global.dart';
 import '../../data/model/currency_exchange_models/all_currencies_model.dart';
 import '../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
 import '../../data/model/widgets_model/currency_exchange_parameters_model.dart';
@@ -15,13 +16,11 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
 
   final CurrencyExchangeRepository _currencyExchangeRepository;
 
-  String fluctuationBase = 'USD';
-  String symbols = 'EGP';
-  String allCurrenciesBase = 'EGP';
   var dateTimeNow = DateTime.now();
   var dateTimeYesterday = DateTime.now().subtract(const Duration(days: 1));
 
   Future<void> getCurrencyExchange() async {
+    emit(CurrencyExchangeInitial());
     emit(GetCurrencyExchangeLoading());
     final fluctuationCurrencies = await _getFluctuationCurrencies();
     final allCurrencies = await _getAllCurrencies();

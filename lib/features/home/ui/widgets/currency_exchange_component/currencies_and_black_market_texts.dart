@@ -1,9 +1,9 @@
 import 'package:currencypro/core/utils/app_colors.dart';
 import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:currencypro/core/utils/app_text_style.dart';
-import 'package:currencypro/features/home/logic/currency_exchange_cubit/currency_exchange_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../core/utils/global.dart';
 
 class CurrenciesAndBlackMarketTexts extends StatelessWidget {
   const CurrenciesAndBlackMarketTexts({
@@ -12,14 +12,13 @@ class CurrenciesAndBlackMarketTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currencyExchangeCubit = context.read<CurrencyExchangeCubit>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Text(
-            '${currencyExchangeCubit.fluctuationBase} / ${currencyExchangeCubit.symbols}',
+            '$fluctuationBase / $symbols',
             style: AppTextStyle.textStyle19.copyWith(
               color: AppColors.appBlueColor,
               fontWeight: FontWeight.w600,
@@ -30,7 +29,7 @@ class CurrenciesAndBlackMarketTexts extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Text(
-            'Today in the Black Market in ${AppConstants.getCurrencyNameBySymbol(currencyExchangeCubit.symbols)}',
+            'Today in the Black Market in ${AppConstants.getCurrencyNameBySymbol(symbols)}',
           ),
         ),
       ],
