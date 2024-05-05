@@ -1,42 +1,32 @@
 import 'dart:io';
 
 import 'package:currencypro/core/api/status_code.dart';
-import 'package:currencypro/core/utils/app_strings.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
 import '../error/failures.dart';
 import '../utils/service_locator.dart';
 import 'api_consumer.dart';
-import 'app_interceptors.dart';
-import 'end_points.dart';
+import 'app_interceptors/app_interceptors.dart';
 
 class DioConsumer implements ApiConsumer {
-  DioConsumer(this.client) {
+  DioConsumer(this.client, {this.isGoldRequest = false}) {
     (client.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
       final client = HttpClient();
       client.badCertificateCallback = (cert, host, port) => true;
       return client;
     };
 
-    client.options
-      ..baseUrl = EndPoints.exchangeBaseUrl
-      ..responseType = ResponseType.plain
-      ..followRedirects = false
-      ..headers = {
-        AppStrings.apikey: AppStrings.apikeyValue,
-      }
-      ..validateStatus = (status) {
-        return status! < StatusCode.internalServerError;
-      };
+    client.interceptors.add(sl<CurrencyExchangeInterceptors>());
 
-    client.interceptors.add(sl<AppInterceptors>());
+    // client.interceptors.add(sl<GoldPriceInterceptors>());
     // if (kDebugMode) {
     //   client.interceptors.add(sl<LogInterceptor>());
     // }
   }
 
   final Dio client;
+  final bool isGoldRequest;
 
   @override
   Future<Response> get(String path, {Map<String, dynamic>? queryParameters}) async {

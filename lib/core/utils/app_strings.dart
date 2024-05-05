@@ -8,8 +8,7 @@ abstract class AppStrings {
   static const String unexpectedError = 'Unexpected Error';
   static const noRouteFound = 'No Route Found';
   static const String success = 'success';
-  static const String apikey = 'apikey';
-  static const String apikeyValue = 'X3TzOxC1hYTi6hZMjUKB3GV8rifqBaL3';
+
   static const String egp = 'EGP';
 
 // error handler
