@@ -13,14 +13,14 @@ class ErrorHandler implements Exception {
   ErrorHandler.handle(dynamic error, {int? statusCode}) {
     if (error is DioException) {
       failure = _handleError(error);
+    } else if (statusCode != null && statusCode == 429) {
+      failure = DataSource.tooManyRequest.getFailure();
     } else if (statusCode != null && statusCode == 400) {
       failure = DataSource.badRequest.getFailure();
     } else if (statusCode != null && statusCode == 401) {
       failure = DataSource.unauthorised.getFailure();
     } else if (statusCode != null && statusCode == 404) {
       failure = DataSource.notFound.getFailure();
-    } else if (statusCode != null && statusCode == 429) {
-      failure = DataSource.tooManyRequest.getFailure();
     } else if (statusCode != null && statusCode == 500) {
       failure = DataSource.internalServerError.getFailure();
     } else {
@@ -73,8 +73,6 @@ enum DataSource {
 extension DataSourceExtension on DataSource {
   Failures getFailure() {
     switch (this) {
-      case DataSource.success:
-        return Failures(ResponseCode.success, ResponseMessage.success);
       case DataSource.noContent:
         return Failures(ResponseCode.noContent, ResponseMessage.noContent);
       case DataSource.badRequest:
@@ -101,7 +99,8 @@ extension DataSourceExtension on DataSource {
         return Failures(ResponseCode.noInternetConnection, ResponseMessage.noInternetConnection);
       case DataSource.tooManyRequest:
         return Failures(ResponseCode.tooManyRequest, ResponseMessage.tooManyRequest);
-
+      case DataSource.success:
+        return Failures(ResponseCode.success, ResponseMessage.success);
       case DataSource.kDefault:
         return Failures(ResponseCode.kDefault, ResponseMessage.kDefault);
     }

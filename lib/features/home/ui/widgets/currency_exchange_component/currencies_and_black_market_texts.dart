@@ -22,7 +22,7 @@ class CurrenciesAndBlackMarketTexts extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '$fluctuationBase / $symbols',
+                '$fluctuationBase / ${fluctuationBase == symbols ? 'EUR' : symbols}',
                 style: AppTextStyle.textStyle19.copyWith(
                   color: AppColors.appBlueColor,
                   fontWeight: FontWeight.w600,

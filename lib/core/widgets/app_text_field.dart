@@ -18,7 +18,7 @@ class AppTextField extends StatefulWidget {
   final String? hint;
   final TextStyle? hintStyle;
   final void Function(String)? onFieldSubmitted;
-  final FormFieldValidator<dynamic>? validator;
+  final FormFieldValidator<String>? validator;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();

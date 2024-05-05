@@ -37,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
       title: const Text(
-        'Today\'s Currencies',
+        'Today\'s Souq',
         style: AppTextStyle.textStyle23,
       ),
       actions: [

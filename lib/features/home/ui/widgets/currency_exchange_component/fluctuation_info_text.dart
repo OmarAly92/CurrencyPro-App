@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_constants.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_text_style.dart';
 import '../../../../../core/utils/global.dart';
 import '../../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
@@ -36,7 +35,7 @@ class FluctuationInfoText extends StatelessWidget {
                 const TextSpan(text: 'Buying price'),
                 const TextSpan(text: ' '),
                 TextSpan(
-                  text: currencyExchangeModel.rates![AppStrings.egp]!.endRate.toStringAsFixed(2),
+                  text: currencyExchangeModel.rates![symbols]!.endRate.toStringAsFixed(2),
                   style: AppTextStyle.textStyle10.copyWith(
                     color: AppColors.appBlueColor,
                     fontWeight: FontWeight.w600,
@@ -45,7 +44,7 @@ class FluctuationInfoText extends StatelessWidget {
                 const TextSpan(text: '  '),
                 TextSpan(
                   text:
-                      '${AppConstants.currencyNumberPercentFormat(currencyExchangeModel.rates![AppStrings.egp]!.changePct)} Compared To The Last Price Yesterday',
+                      '${AppConstants.currencyNumberPercentFormat(currencyExchangeModel.rates![symbols]!.changePct)} Compared To The Last Price Yesterday',
                   style: AppTextStyle.textStyle10.copyWith(
                     color: isNegativeNum ? AppColors.appRedColor : AppColors.appGreenColor,
                     fontWeight: FontWeight.w500,

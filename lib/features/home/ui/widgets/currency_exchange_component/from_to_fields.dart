@@ -46,7 +46,7 @@ class FromToFields extends StatelessWidget {
                     return 'Enter currency code';
                   } else if (value.toString().length != 3) {
                     return 'must be 3 letters';
-                  } else if (!AppConstants.getCurrenciesCode().contains(value)) {
+                  } else if (!AppConstants.getCurrenciesCode().contains(value?.toUpperCase())) {
                     return 'Invalid  currency code';
                   }
                   return null;
@@ -83,7 +83,7 @@ class FromToFields extends StatelessWidget {
                     return 'Enter currency code';
                   } else if (value.toString().length != 3) {
                     return 'must be 3 letters';
-                  } else if (!AppConstants.getCurrenciesCode().contains(value)) {
+                  } else if (!AppConstants.getCurrenciesCode().contains(value?.toUpperCase())) {
                     return 'Invalid  currency code';
                   }
                   return null;
