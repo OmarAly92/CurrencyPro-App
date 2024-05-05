@@ -4,16 +4,16 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_constants.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_text_style.dart';
-import '../../../data/model/currency_exchange_model.dart';
+import '../../../data/model/fluctuation_currencies_model.dart';
 
 class FluctuationInfoText extends StatelessWidget {
   const FluctuationInfoText({super.key, required this.currencyExchangeModel});
 
-  final CurrencyExchangeModel currencyExchangeModel;
+  final FluctuationCurrenciesModel currencyExchangeModel;
 
   @override
   Widget build(BuildContext context) {
-    bool isNegativeNum = getIsNegativeNum();
+    final isNegativeNum = getIsNegativeNum();
     final isThereFluctuation = getIsThereFluctuation();
     if (isThereFluctuation) {
       return const SizedBox.shrink();

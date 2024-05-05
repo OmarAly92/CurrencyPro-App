@@ -38,7 +38,7 @@ class _CurrencyExchangeViewState extends State<CurrencyExchangeView> {
                     const SliverToBoxAdapter(child: Gap(25)),
                     SliverToBoxAdapter(
                         child: CurrencyExchangeHeader(
-                      currencyExchangeModel: state.currencyExchangeModel,
+                      currencyExchangeModel: state.fluctuationCurrencies,
                     )),
                     const SliverToBoxAdapter(child: Gap(25)),
                     const SliverCurrenciesList(),

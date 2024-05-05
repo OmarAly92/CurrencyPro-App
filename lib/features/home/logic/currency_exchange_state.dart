@@ -15,14 +15,16 @@ final class GetCurrencyExchangeLoading extends CurrencyExchangeState {
 }
 
 final class GetCurrencyExchangeSuccess extends CurrencyExchangeState {
-  final CurrencyExchangeModel currencyExchangeModel;
+  final FluctuationCurrenciesModel fluctuationCurrencies;
+  final AllCurrenciesModel allCurrencies;
 
   const GetCurrencyExchangeSuccess({
-    required this.currencyExchangeModel,
+    required this.fluctuationCurrencies,
+    required this.allCurrencies,
   });
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [fluctuationCurrencies, allCurrencies];
 }
 
 final class GetCurrencyExchangeFailure extends CurrencyExchangeState {
@@ -33,5 +35,5 @@ final class GetCurrencyExchangeFailure extends CurrencyExchangeState {
   });
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [failureMessage];
 }

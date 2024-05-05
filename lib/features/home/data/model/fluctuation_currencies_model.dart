@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class CurrencyExchangeModel extends Equatable {
+class FluctuationCurrenciesModel extends Equatable {
   final bool success;
   final bool fluctuation;
   final String? startDate;
@@ -8,7 +8,7 @@ class CurrencyExchangeModel extends Equatable {
   final String base;
   final Map<String, CurrencyRates>? rates;
 
-  const CurrencyExchangeModel({
+  const FluctuationCurrenciesModel({
     required this.success,
     required this.fluctuation,
     this.startDate,
@@ -17,8 +17,8 @@ class CurrencyExchangeModel extends Equatable {
     this.rates,
   });
 
-  factory CurrencyExchangeModel.fromJson(Map<String, dynamic> json) {
-    return CurrencyExchangeModel(
+  factory FluctuationCurrenciesModel.fromJson(Map<String, dynamic> json) {
+    return FluctuationCurrenciesModel(
       success: json['success'] ?? false,
       fluctuation: json['fluctuation'] ?? false,
       startDate: json['start_date'],

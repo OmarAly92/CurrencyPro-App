@@ -4,9 +4,8 @@ import 'package:currencypro/core/utils/app_text_style.dart';
 import 'package:currencypro/features/home/logic/currency_exchange_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
 
-import '../../../data/model/currency_exchange_model.dart';
+import '../../../data/model/fluctuation_currencies_model.dart';
 import 'fluctuation_info_text.dart';
 
 class CurrencyPriceAndCompareTexts extends StatelessWidget {
@@ -15,7 +14,7 @@ class CurrencyPriceAndCompareTexts extends StatelessWidget {
     required this.currencyExchangeModel,
   });
 
-  final CurrencyExchangeModel currencyExchangeModel;
+  final FluctuationCurrenciesModel currencyExchangeModel;
 
   @override
   Widget build(BuildContext context) {
