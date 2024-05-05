@@ -8,13 +8,13 @@ class SliverCurrenciesListShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Gap(8),
+        Gap(8),
         ShimmerTextContainer(),
-        const Gap(17),
-        const Column(
+        Gap(17),
+        Column(
           children: [
             CurrenciesListItemShimmer(),
             Gap(10),
@@ -25,7 +25,7 @@ class SliverCurrenciesListShimmer extends StatelessWidget {
             CurrenciesListItemShimmer(),
           ],
         ),
-        const Gap(25),
+        Gap(25),
       ],
     );
   }

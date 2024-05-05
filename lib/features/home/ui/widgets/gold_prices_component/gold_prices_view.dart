@@ -1,3 +1,4 @@
+import 'package:currencypro/features/home/ui/widgets/gold_prices_component/get_gold_price_loading_shimmer.dart';
 import 'package:currencypro/core/widgets/app_refresh_indicator.dart';
 import 'package:currencypro/features/home/logic/gold_price_cubit/gold_price_cubit.dart';
 import 'package:currencypro/features/home/ui/widgets/gold_prices_component/gold_price_success_widget.dart';
@@ -31,14 +32,7 @@ class _GoldPricesViewState extends State<GoldPricesView> {
                 if (state is GetGoldPriceLoading) {
                   return const SliverFillRemaining(
                     hasScrollBody: false,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox.shrink(),
-                        CircularProgressIndicator(),
-                        SizedBox(height: 50),
-                      ],
-                    ),
+                    child: GetGoldPriceLoadingShimmer(),
                   );
                 } else if (state is GetGoldPriceSuccess) {
                   return GoldPriceSuccessWidget(goldPriceModel: state.goldPrice);

@@ -5,7 +5,9 @@ import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/widgets/app_shimmer.dart';
 
 class CurrenciesListItemShimmer extends StatelessWidget {
-  const CurrenciesListItemShimmer({super.key});
+  const CurrenciesListItemShimmer({super.key, this.image});
+
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class CurrenciesListItemShimmer extends StatelessWidget {
         child: ListTile(
           leading: Image.asset(
             height: 35,
-            AppImages.currencyImage,
+            image ?? AppImages.currencyImage,
           ),
           title: const Row(
             children: [

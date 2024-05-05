@@ -34,8 +34,7 @@ class _CurrencyExchangeViewState extends State<CurrencyExchangeView> {
             slivers: [
               BlocBuilder<CurrencyExchangeCubit, CurrencyExchangeState>(
                 builder: (context, state) {
-                  // if (state is GetCurrencyExchangeLoading) {
-                  if (state is GetCurrencyExchangeFailure) {
+                  if (state is GetCurrencyExchangeLoading) {
                     return const SliverFillRemaining(child: CurrencyExchangeLoadingShimmer());
                   } else if (state is GetCurrencyExchangeSuccess) {
                     return MultiSliver(
