@@ -7,8 +7,7 @@ import 'package:dio/io.dart';
 import '../error/failures.dart';
 import '../utils/service_locator.dart';
 import 'api_consumer.dart';
-import 'app_interceptors/currency_exchange_interceptor.dart';
-import 'app_interceptors/gold_price_interceptor.dart';
+import 'app_interceptors.dart';
 
 class DioConsumer implements ApiConsumer {
   DioConsumer(this.client, {this.isGoldRequest = false}) {
@@ -17,12 +16,7 @@ class DioConsumer implements ApiConsumer {
       client.badCertificateCallback = (cert, host, port) => true;
       return client;
     };
-
-    if (isGoldRequest) {
-      client.interceptors.add(sl<GoldPriceInterceptor>());
-    } else {
-      client.interceptors.add(sl<CurrencyExchangeInterceptor>());
-    }
+    client.interceptors.add(sl<AppInterceptor>());
 
     // if (kDebugMode) {
     //   client.interceptors.add(sl<LogInterceptor>());

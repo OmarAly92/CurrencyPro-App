@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 
 import '../../../../core/api/dio_consumer.dart';
-import '../../../../core/api/end_points.dart';
-import '../model/gold_price_models/gold_price_model.dart';
+import '../model/gold_price_models/gold_price_request_parameters.dart';
 
 abstract class GoldPriceRemoteDataSource {
   Future<Response<dynamic>> getGoldPrice({
-    required GoldPriceModel parameters,
+    required GoldPriceRequestParameters parameters,
   });
 }
 
@@ -17,10 +16,10 @@ class GoldPriceRemoteDataSourceImp implements GoldPriceRemoteDataSource {
 
   @override
   Future<Response<dynamic>> getGoldPrice({
-    required GoldPriceModel parameters,
+    required GoldPriceRequestParameters parameters,
   }) async {
     final response = await _dioConsumer.get(
-      EndPoints.kTEndPoint,
+      '${parameters.metal}/${parameters.countryCode}',
       queryParameters: {},
     );
     return response;

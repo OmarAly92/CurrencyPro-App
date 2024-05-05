@@ -1,4 +1,5 @@
 import 'package:currencypro/features/home/data/remote_data_source/currency_exchange_data_source.dart';
+import 'package:currencypro/features/home/data/remote_data_source/gold_price_data_source.dart';
 import 'package:currencypro/features/home/data/repository/currency_exchange_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -6,9 +7,9 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/home/data/repository/gold_price_repository.dart';
 import '../../features/home/logic/currency_exchange_cubit/currency_exchange_cubit.dart';
-import '../api/app_interceptors/currency_exchange_interceptor.dart';
-import '../api/app_interceptors/gold_price_interceptor.dart';
+import '../api/app_interceptors.dart';
 import '../api/dio_consumer.dart';
 import '../network/network_status.dart';
 
@@ -21,9 +22,11 @@ Future<void> inIt() async {
 
   // Repository
   sl.registerLazySingleton<CurrencyExchangeRepository>(() => CurrencyExchangeRepositoryImp(sl()));
+  sl.registerLazySingleton<GoldPriceRepository>(() => GoldPriceRepositoryImp(sl()));
 
   // Data Sources
   sl.registerLazySingleton<CurrencyExchangeDataSource>(() => CurrencyExchangeDataSourceImp(sl()));
+  sl.registerLazySingleton<GoldPriceRemoteDataSource>(() => GoldPriceRemoteDataSourceImp(sl()));
 
   /// Core
   sl.registerLazySingleton<NetworkStatus>(() => NetworkStatusImp(sl()));
@@ -35,8 +38,7 @@ Future<void> inIt() async {
   sl.registerLazySingleton<Logger>(() => Logger());
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-  sl.registerLazySingleton<CurrencyExchangeInterceptor>(() => CurrencyExchangeInterceptor());
-  sl.registerLazySingleton<GoldPriceInterceptor>(() => GoldPriceInterceptor());
+  sl.registerLazySingleton<AppInterceptor>(() => AppInterceptor());
   sl.registerLazySingleton<LogInterceptor>(() => LogInterceptor(
         request: true,
         requestHeader: true,

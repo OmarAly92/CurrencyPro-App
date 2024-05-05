@@ -20,7 +20,7 @@ class AppRouter {
                   create: (context) => CurrencyExchangeCubit(sl()),
                 ),
                 BlocProvider(
-                  create: (context) => GoldPriceCubit(),
+                  create: (context) => GoldPriceCubit(sl()),
                 ),
               ],
               child: const HomeView(),
