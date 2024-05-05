@@ -1,7 +1,8 @@
+import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:currencypro/core/utils/app_text_style.dart';
 import 'package:currencypro/core/widgets/app_text_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 
 class FromToFields extends StatelessWidget {
@@ -30,8 +31,26 @@ class FromToFields extends StatelessWidget {
               ),
               const Gap(10),
               AppTextField(
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(3),
+                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                ],
                 controller: fromController,
-                hint: 'Enter Your Number',
+                hint: 'Enter Currency Symbol',
+                hintStyle: AppTextStyle.textStyle13.copyWith(
+                  fontSize: 13.2,
+                  color: Colors.white54,
+                ),
+                validator: (value) {
+                  if (value.toString().isEmpty) {
+                    return 'Enter currency code';
+                  } else if (value.toString().length != 3) {
+                    return 'must be 3 letters';
+                  } else if (!AppConstants.getCurrenciesCode().contains(value)) {
+                    return 'Invalid  currency code';
+                  }
+                  return null;
+                },
               ),
             ],
           ),
@@ -49,8 +68,26 @@ class FromToFields extends StatelessWidget {
               ),
               const Gap(10),
               AppTextField(
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(3),
+                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                ],
                 controller: toController,
-                hint: 'Enter Your Number',
+                hint: 'Enter Currency Symbol',
+                hintStyle: AppTextStyle.textStyle13.copyWith(
+                  fontSize: 13.2,
+                  color: Colors.white54,
+                ),
+                validator: (value) {
+                  if (value.toString().isEmpty) {
+                    return 'Enter currency code';
+                  } else if (value.toString().length != 3) {
+                    return 'must be 3 letters';
+                  } else if (!AppConstants.getCurrenciesCode().contains(value)) {
+                    return 'Invalid  currency code';
+                  }
+                  return null;
+                },
               ),
             ],
           ),

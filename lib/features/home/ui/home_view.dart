@@ -53,7 +53,7 @@ class _HomeViewState extends State<HomeView> {
               setState(() {});
             },
             itemBuilder: (context) {
-              return ['EGP', ...AppConstants.getCurrenciesCode()].map((item) {
+              return AppConstants.getCurrenciesCode().map((item) {
                 return PopupMenuItem<String>(
                   value: item,
                   child: Center(

@@ -124,6 +124,7 @@ class AppConstants {
 
   static List<String> getCurrenciesCode() {
     return [
+      'EGP',
       'USD',
       'EUR',
       'GBP',

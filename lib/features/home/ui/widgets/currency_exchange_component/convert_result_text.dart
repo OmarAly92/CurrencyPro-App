@@ -4,10 +4,15 @@ import 'package:currencypro/core/utils/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../data/model/currency_exchange_models/currency_conversion_model.dart';
+
 class ConvertResultText extends StatelessWidget {
   const ConvertResultText({
     super.key,
+    this.currencyConversionModel,
   });
+
+  final CurrencyConversionModel? currencyConversionModel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,7 @@ class ConvertResultText extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
             children: [
-              const TextSpan(text: '0.00'),
+              TextSpan(text: currencyConversionModel?.result.toStringAsFixed(2) ?? '0.00'),
               TextSpan(
                 text: symbols,
                 style: AppTextStyle.textStyle10.copyWith(

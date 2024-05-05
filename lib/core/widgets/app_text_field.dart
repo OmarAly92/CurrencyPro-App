@@ -1,5 +1,6 @@
 import 'package:currencypro/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppTextField extends StatefulWidget {
   const AppTextField({
@@ -8,12 +9,16 @@ class AppTextField extends StatefulWidget {
     this.hint,
     this.hintStyle,
     this.onFieldSubmitted,
+    this.inputFormatters,
+    this.validator,
   });
 
+  final List<TextInputFormatter>? inputFormatters;
   final TextEditingController? controller;
   final String? hint;
   final TextStyle? hintStyle;
   final void Function(String)? onFieldSubmitted;
+  final FormFieldValidator<dynamic>? validator;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -53,12 +58,14 @@ class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: widget.inputFormatters,
       focusNode: focusNode,
       controller: widget.controller,
       style: TextStyle(
         color: isActive ? AppColors.appBlueColor : Colors.white,
         decorationColor: Colors.transparent,
       ),
+      validator: widget.validator,
       onFieldSubmitted: widget.onFieldSubmitted,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
@@ -79,6 +86,11 @@ class _AppTextFieldState extends State<AppTextField> {
           borderSide: BorderSide(color: Colors.white),
           borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.appRedColor),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+        ),
+        errorStyle: TextStyle(color: AppColors.appRedColor),
       ),
     );
   }

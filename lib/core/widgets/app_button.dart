@@ -63,7 +63,10 @@ class AppButton extends StatelessWidget {
               onPressed: isLoading ? () {} : onPressed,
               child: isLoading
                   ? Center(
-                      child: SpinKitThreeBounce(color: AppColors.whiteColor),
+                      child: SpinKitThreeBounce(
+                        color: AppColors.whiteColor,
+                        size: 35,
+                      ),
                     )
                   : FittedBox(
                       fit: BoxFit.scaleDown,
@@ -93,7 +96,10 @@ class AppButton extends StatelessWidget {
         ),
         onPressed: isLoading ? () {} : onPressed,
         child: isLoading
-            ? SpinKitThreeBounce(color: AppColors.whiteColor)
+            ? SpinKitThreeBounce(
+                color: AppColors.whiteColor,
+                size: 35,
+              )
             : FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
