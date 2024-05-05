@@ -5,7 +5,7 @@ import '../../utils/app_strings.dart';
 import '../end_points.dart';
 import '../status_code.dart';
 
-class GoldPriceInterceptors extends Interceptor {
+class GoldPriceInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options

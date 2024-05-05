@@ -7,8 +7,8 @@ import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/home/logic/currency_exchange_cubit/currency_exchange_cubit.dart';
-import '../api/app_interceptors/app_interceptors.dart';
-import '../api/app_interceptors/gold_price_interceptors.dart';
+import '../api/app_interceptors/currency_exchange_interceptor.dart';
+import '../api/app_interceptors/gold_price_interceptor.dart';
 import '../api/dio_consumer.dart';
 import '../network/network_status.dart';
 
@@ -35,8 +35,8 @@ Future<void> inIt() async {
   sl.registerLazySingleton<Logger>(() => Logger());
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-  sl.registerLazySingleton<CurrencyExchangeInterceptors>(() => CurrencyExchangeInterceptors());
-  sl.registerLazySingleton<GoldPriceInterceptors>(() => GoldPriceInterceptors());
+  sl.registerLazySingleton<CurrencyExchangeInterceptor>(() => CurrencyExchangeInterceptor());
+  sl.registerLazySingleton<GoldPriceInterceptor>(() => GoldPriceInterceptor());
   sl.registerLazySingleton<LogInterceptor>(() => LogInterceptor(
         request: true,
         requestHeader: true,

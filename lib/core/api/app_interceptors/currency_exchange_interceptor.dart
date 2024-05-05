@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import '../../utils/app_strings.dart';
 import '../end_points.dart';
 
-class CurrencyExchangeInterceptors extends Interceptor {
+class CurrencyExchangeInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options
