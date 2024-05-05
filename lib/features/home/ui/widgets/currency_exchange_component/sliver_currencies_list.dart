@@ -1,9 +1,9 @@
 import 'package:currencypro/core/utils/app_constants.dart';
+import 'package:currencypro/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../../../core/utils/app_colors.dart';
 import '../../../data/model/currency_exchange_models/all_currencies_model.dart';
 import '../../../data/model/widgets_model/currencies_list_item_model.dart';
 import '../currencies_list_item.dart';
@@ -32,9 +32,9 @@ class SliverCurrenciesList extends StatelessWidget {
               currenciesListItemModel: CurrenciesListItemModel(
                 currencyName: AppConstants.getCurrencyNameBySymbol(currenciesCode[index]),
                 buyPrice: (1 / allCurrenciesModel.rates[currenciesCode[index]]!).toStringAsFixed(2),
-                widget: const Icon(
-                  Icons.attach_money_rounded,
-                  color: AppColors.appBlueColor,
+                widget: Image.asset(
+                  height: 35,
+                  AppImages.currencyImage,
                 ),
               ),
             );
