@@ -36,6 +36,8 @@ dependencies:
   sliver_tools: ^0.2.12
   # Contains code to deal with internationalized/localized messages, date and number formatting and parsing.
   intl: ^0.19.0
+  # Easily add staggered animations to your ListView, GridView, Column and Row children as shown in Material Design guidelines
+  flutter_staggered_animations: ^1.1.1
 
 
 
@@ -43,7 +45,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^3.0.0
+  flutter_lints: ^3.0.2
 
 flutter:
 

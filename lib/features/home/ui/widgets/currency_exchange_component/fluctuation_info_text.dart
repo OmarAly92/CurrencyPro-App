@@ -13,9 +13,8 @@ class FluctuationInfoText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isNegativeNum = isNegative(currencyExchangeModel.rates![AppStrings.egp]!.changePct);
-    final isThereFluctuation =
-        currencyExchangeModel.rates![AppStrings.egp]!.changePct.toStringAsFixed(2) == '0.00';
+    bool isNegativeNum = getIsNegativeNum();
+    final isThereFluctuation = getIsThereFluctuation();
     if (isThereFluctuation) {
       return const SizedBox.shrink();
     } else {
@@ -57,6 +56,13 @@ class FluctuationInfoText extends StatelessWidget {
         ],
       );
     }
+  }
+
+  bool getIsNegativeNum() => isNegative(currencyExchangeModel.rates![AppStrings.egp]!.changePct);
+
+  bool getIsThereFluctuation() {
+    return (currencyExchangeModel.fluctuation &&
+        currencyExchangeModel.rates![AppStrings.egp]!.changePct.toStringAsFixed(2) == '0.00');
   }
 
   bool isNegative(num number) {

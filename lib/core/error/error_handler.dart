@@ -157,8 +157,6 @@ class ApiInternalStatus {
   static const int failure = 400;
 }
 
-
-
 class AppStringsWithoutLocale {
   static const String badRequestError = 'Bad request error';
   static const String noContent = 'No content';

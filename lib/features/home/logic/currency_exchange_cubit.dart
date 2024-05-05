@@ -36,7 +36,7 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
 
   Future<void> getAllCurrencies() async {
     emit(GetCurrencyExchangeLoading());
-    final result = await _currencyExchangeRepository.getCurrencyExchange(
+    final result = await _currencyExchangeRepository.getAllCurrencies(
         parameters: CurrencyExchangeParametersModel(
       symbols: symbols,
       base: base,
