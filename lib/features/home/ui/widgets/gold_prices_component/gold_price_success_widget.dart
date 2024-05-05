@@ -2,6 +2,7 @@ import 'package:currencypro/core/utils/app_images.dart';
 import 'package:currencypro/features/home/data/model/gold_price_models/gold_price_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../data/model/widgets_model/currencies_list_item_model.dart';
 import '../currencies_list_item.dart';
@@ -110,8 +111,8 @@ class _GoldPriceSuccessWidgetState extends State<GoldPriceSuccessWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
+    return MultiSliver(
+      children: [
         const SliverToBoxAdapter(child: Gap(20)),
         SliverList.separated(
           itemCount: item.length,

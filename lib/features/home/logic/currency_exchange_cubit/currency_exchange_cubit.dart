@@ -2,7 +2,6 @@ import 'package:currencypro/core/api/result.dart';
 import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/web.dart';
 
 import '../../../../core/utils/global.dart';
 import '../../data/model/currency_exchange_models/all_currencies_model.dart';

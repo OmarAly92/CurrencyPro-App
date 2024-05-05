@@ -25,6 +25,7 @@ class _HomeViewState extends State<HomeView> {
       child: Scaffold(
         appBar: buildAppBar(context),
         body: const TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: [
             CurrencyExchangeView(),
             GoldPricesView(),
