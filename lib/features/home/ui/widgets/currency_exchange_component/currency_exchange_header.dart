@@ -6,9 +6,9 @@ import 'currency_exchange_header_container.dart';
 import 'currency_price_and_compare_texts.dart';
 
 class CurrencyExchangeHeader extends StatelessWidget {
-  const CurrencyExchangeHeader({super.key, required this.currencyExchangeModel});
+  const CurrencyExchangeHeader({super.key, required this.fluctuationCurrencies});
 
-  final FluctuationCurrenciesModel currencyExchangeModel;
+  final FluctuationCurrenciesModel fluctuationCurrencies;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CurrencyExchangeHeader extends StatelessWidget {
         children: [
           const CurrenciesAndBlackMarketTexts(),
           CurrencyPriceAndCompareTexts(
-            currencyExchangeModel: currencyExchangeModel,
+            currencyExchangeModel: fluctuationCurrencies,
           ),
         ],
       ),

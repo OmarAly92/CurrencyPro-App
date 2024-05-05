@@ -22,16 +22,9 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
 
   Future<void> getCurrencyExchange() async {
     emit(GetCurrencyExchangeLoading());
-    final fluctuationCurrencies = await _currencyExchangeRepository.getCurrencyExchange(
-        parameters: CurrencyExchangeParametersModel(
-      symbols: symbols,
-      base: base,
-      startDate: AppConstants.dateFormat(dateTimeYesterday),
-      endDate: AppConstants.dateFormat(dateTimeNow),
-    ));
-    final allCurrencies = await getAllCurrencies();
-
-    if (fluctuationCurrencies.isSuccess) {
+    final fluctuationCurrencies = await _getFluctuationCurrencies();
+    final allCurrencies = await _getAllCurrencies();
+    if (fluctuationCurrencies.isSuccess && allCurrencies.isSuccess) {
       emit(GetCurrencyExchangeSuccess(
         fluctuationCurrencies: fluctuationCurrencies.value!,
         allCurrencies: allCurrencies.value!,
@@ -41,7 +34,18 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
     }
   }
 
-  Future<Result<AllCurrenciesModel>> getAllCurrencies() async {
+  Future<Result<FluctuationCurrenciesModel>> _getFluctuationCurrencies() async {
+    final result = await _currencyExchangeRepository.getCurrencyExchange(
+        parameters: CurrencyExchangeParametersModel(
+      symbols: symbols,
+      base: base,
+      startDate: AppConstants.dateFormat(dateTimeYesterday),
+      endDate: AppConstants.dateFormat(dateTimeNow),
+    ));
+    return result;
+  }
+
+  Future<Result<AllCurrenciesModel>> _getAllCurrencies() async {
     final result = await _currencyExchangeRepository.getAllCurrencies(
         parameters: CurrencyExchangeParametersModel(
       symbols: symbols,

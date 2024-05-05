@@ -4,13 +4,17 @@ import 'package:gap/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../data/model/all_currencies_model.dart';
 import '../../../data/model/currencies_list_item_model.dart';
 import '../currencies_list_item.dart';
 
 class SliverCurrenciesList extends StatelessWidget {
   const SliverCurrenciesList({
     super.key,
+    required this.allCurrenciesModel,
   });
+
+  final AllCurrenciesModel allCurrenciesModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,6 @@ class SliverCurrenciesList extends StatelessWidget {
       const CurrenciesListItemModel(
         currencyName: 'United States Dollar',
         buyPrice: '48.33',
-        sellPrice: '48.08',
         widget: Icon(
           Icons.attach_money_rounded,
           color: AppColors.appBlueColor,
@@ -27,7 +30,6 @@ class SliverCurrenciesList extends StatelessWidget {
       const CurrenciesListItemModel(
         currencyName: 'United States Dollar',
         buyPrice: '48.33',
-        sellPrice: '48.08',
         widget: Icon(
           Icons.attach_money_rounded,
           color: AppColors.appBlueColor,
@@ -36,7 +38,6 @@ class SliverCurrenciesList extends StatelessWidget {
       const CurrenciesListItemModel(
         currencyName: 'United States Dollar',
         buyPrice: '48.33',
-        sellPrice: '48.08',
         widget: Icon(
           Icons.attach_money_rounded,
           color: AppColors.appBlueColor,
@@ -45,7 +46,6 @@ class SliverCurrenciesList extends StatelessWidget {
       const CurrenciesListItemModel(
         currencyName: 'United States Dollar',
         buyPrice: '48.33',
-        sellPrice: '48.08',
         widget: Icon(
           Icons.attach_money_rounded,
           color: AppColors.appBlueColor,
@@ -54,7 +54,6 @@ class SliverCurrenciesList extends StatelessWidget {
       const CurrenciesListItemModel(
         currencyName: 'United States Dollar',
         buyPrice: '48.33',
-        sellPrice: '48.08',
         widget: Icon(
           Icons.attach_money_rounded,
           color: AppColors.appBlueColor,

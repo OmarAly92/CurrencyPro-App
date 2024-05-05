@@ -38,10 +38,10 @@ class _CurrencyExchangeViewState extends State<CurrencyExchangeView> {
                     const SliverToBoxAdapter(child: Gap(25)),
                     SliverToBoxAdapter(
                         child: CurrencyExchangeHeader(
-                      currencyExchangeModel: state.fluctuationCurrencies,
+                      fluctuationCurrencies: state.fluctuationCurrencies,
                     )),
                     const SliverToBoxAdapter(child: Gap(25)),
-                    const SliverCurrenciesList(),
+                    SliverCurrenciesList(allCurrenciesModel: state.allCurrencies),
                   ],
                 );
               } else if (state is GetCurrencyExchangeFailure) {

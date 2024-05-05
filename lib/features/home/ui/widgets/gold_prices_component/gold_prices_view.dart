@@ -16,7 +16,6 @@ class GoldPricesView extends StatelessWidget {
       const CurrenciesListItemModel(
         currencyName: 'United States Dollar',
         buyPrice: '48.33',
-        sellPrice: '48.08',
         widget: Icon(
           Icons.attach_money_rounded,
           color: AppColors.appBlueColor,
@@ -25,7 +24,6 @@ class GoldPricesView extends StatelessWidget {
       const CurrenciesListItemModel(
         currencyName: 'United States Dollar',
         buyPrice: '48.33',
-        sellPrice: '48.08',
         widget: Icon(
           Icons.attach_money_rounded,
           color: AppColors.appBlueColor,
@@ -34,7 +32,6 @@ class GoldPricesView extends StatelessWidget {
       const CurrenciesListItemModel(
         currencyName: 'United States Dollar',
         buyPrice: '48.33',
-        sellPrice: '48.08',
         widget: Icon(
           Icons.attach_money_rounded,
           color: AppColors.appBlueColor,
@@ -43,7 +40,6 @@ class GoldPricesView extends StatelessWidget {
       const CurrenciesListItemModel(
         currencyName: 'United States Dollar',
         buyPrice: '48.33',
-        sellPrice: '48.08',
         widget: Icon(
           Icons.attach_money_rounded,
           color: AppColors.appBlueColor,

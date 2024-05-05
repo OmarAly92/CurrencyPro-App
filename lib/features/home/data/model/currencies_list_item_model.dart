@@ -4,13 +4,11 @@ import 'package:flutter/cupertino.dart';
 class CurrenciesListItemModel extends Equatable {
   final String currencyName;
   final String buyPrice;
-  final String sellPrice;
   final Widget widget;
 
   const CurrenciesListItemModel({
     required this.currencyName,
     required this.buyPrice,
-    required this.sellPrice,
     required this.widget,
   });
 
@@ -18,7 +16,6 @@ class CurrenciesListItemModel extends Equatable {
   List<Object> get props => [
         currencyName,
         buyPrice,
-        sellPrice,
         widget,
       ];
 }

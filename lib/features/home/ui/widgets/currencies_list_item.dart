@@ -52,25 +52,12 @@ class CurrenciesListItem extends StatelessWidget {
             style: AppTextStyle.textStyle13,
             children: [
               const TextSpan(
-                text: 'Buy',
-                style: AppTextStyle.textStyle11,
+                text: 'Price',
+                style: AppTextStyle.textStyle13,
               ),
               const TextSpan(text: ' '),
               TextSpan(
                 text: currenciesListItemModel.buyPrice,
-                style: AppTextStyle.textStyle13.copyWith(
-                  color: AppColors.appBlueColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const TextSpan(text: '    '),
-              const TextSpan(
-                text: 'Sell',
-                style: AppTextStyle.textStyle11,
-              ),
-              const TextSpan(text: ' '),
-              TextSpan(
-                text: currenciesListItemModel.sellPrice,
                 style: AppTextStyle.textStyle13.copyWith(
                   color: AppColors.appBlueColor,
                   fontWeight: FontWeight.w500,
