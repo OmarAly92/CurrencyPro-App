@@ -16,7 +16,7 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
   final CurrencyExchangeRepository _currencyExchangeRepository;
 
   String symbols = 'EGP';
-  String base = 'USD';
+  String base = 'EGP';
   var dateTimeNow = DateTime.now();
   var dateTimeYesterday = DateTime.now().subtract(const Duration(days: 1));
 

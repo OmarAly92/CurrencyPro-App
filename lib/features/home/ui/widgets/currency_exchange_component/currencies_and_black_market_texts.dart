@@ -30,7 +30,7 @@ class CurrenciesAndBlackMarketTexts extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Text(
-            'Today in the Black Market in ${AppConstants.getCountryNameBySymbol(currencyExchangeCubit.symbols)}',
+            'Today in the Black Market in ${AppConstants.getCurrencyNameBySymbol(currencyExchangeCubit.symbols)}',
           ),
         ),
       ],

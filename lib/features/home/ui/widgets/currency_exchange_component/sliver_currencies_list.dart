@@ -1,3 +1,4 @@
+import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/sliver_currencies_list_header_row.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -18,58 +19,26 @@ class SliverCurrenciesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<CurrenciesListItemModel> item = [
-      const CurrenciesListItemModel(
-        currencyName: 'United States Dollar',
-        buyPrice: '48.33',
-        widget: Icon(
-          Icons.attach_money_rounded,
-          color: AppColors.appBlueColor,
-        ),
-      ),
-      const CurrenciesListItemModel(
-        currencyName: 'United States Dollar',
-        buyPrice: '48.33',
-        widget: Icon(
-          Icons.attach_money_rounded,
-          color: AppColors.appBlueColor,
-        ),
-      ),
-      const CurrenciesListItemModel(
-        currencyName: 'United States Dollar',
-        buyPrice: '48.33',
-        widget: Icon(
-          Icons.attach_money_rounded,
-          color: AppColors.appBlueColor,
-        ),
-      ),
-      const CurrenciesListItemModel(
-        currencyName: 'United States Dollar',
-        buyPrice: '48.33',
-        widget: Icon(
-          Icons.attach_money_rounded,
-          color: AppColors.appBlueColor,
-        ),
-      ),
-      const CurrenciesListItemModel(
-        currencyName: 'United States Dollar',
-        buyPrice: '48.33',
-        widget: Icon(
-          Icons.attach_money_rounded,
-          color: AppColors.appBlueColor,
-        ),
-      ),
-    ];
+    final List<String> currenciesCode = AppConstants.getCurrenciesCode();
 
     return MultiSliver(
       children: [
         const SliverCurrenciesListHeaderRow(),
         const SliverToBoxAdapter(child: Gap(12)),
         SliverList.separated(
-          itemCount: item.length,
+          itemCount: currenciesCode.length,
           separatorBuilder: (BuildContext context, int index) => const Gap(10),
           itemBuilder: (context, index) {
-            return CurrenciesListItem(currenciesListItemModel: item[index]);
+            return CurrenciesListItem(
+              currenciesListItemModel: CurrenciesListItemModel(
+                currencyName: AppConstants.getCurrencyNameBySymbol(currenciesCode[index]),
+                buyPrice: (1 / allCurrenciesModel.rates[currenciesCode[index]]!).toStringAsFixed(2),
+                widget: const Icon(
+                  Icons.attach_money_rounded,
+                  color: AppColors.appBlueColor,
+                ),
+              ),
+            );
           },
         ),
         const SliverToBoxAdapter(child: Gap(25)),

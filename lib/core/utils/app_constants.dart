@@ -77,11 +77,38 @@ class AppConstants {
     return formattedNumber;
   }
 
-  static String getCountryNameBySymbol(String symbol) {
-    if (symbol == 'EGP') {
-      return 'Egypt';
-    } else {
-      return 'unknown';
+  static String getCurrencyNameBySymbol(String symbol) {
+    switch (symbol) {
+      case 'EGP':
+        return 'Egyptian Pound';
+      case 'USD':
+        return 'US Dollar';
+      case 'EUR':
+        return 'Euro';
+      case 'GBP':
+        return 'British Pound';
+      case 'JPY':
+        return 'Japanese Yen';
+      case 'CHF':
+        return 'Swiss Franc';
+      case 'KWD':
+        return 'Kuwaiti Dinar';
+      case 'SAR':
+        return 'Saudi Riyal';
+      case 'AED':
+        return 'Emirati Dirham';
+      case 'QAR':
+        return 'Qatari Riyal';
+      case 'SGD':
+        return 'Singapore Dollar';
+      case 'OMR':
+        return 'Omani Rial';
+      case 'CAD':
+        return 'Canadian Dollar';
+      case 'INR':
+        return 'Indian Rupee';
+      default:
+        return 'Unknown Currency';
     }
   }
 
@@ -93,5 +120,23 @@ class AppConstants {
     } else {
       return AppStrings.unexpectedError;
     }
+  }
+
+  static List<String> getCurrenciesCode() {
+    return [
+      'USD',
+      'EUR',
+      'GBP',
+      'JPY',
+      'CHF',
+      'KWD',
+      'SAR',
+      'AED',
+      'QAR',
+      'SGD',
+      'OMR',
+      'CAD',
+      'INR',
+    ];
   }
 }
