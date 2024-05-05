@@ -2,15 +2,20 @@ import 'package:dio/dio.dart';
 
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
+import '../model/widgets_model/convert_currency_parameter_model.dart';
 import '../model/widgets_model/currency_exchange_parameters_model.dart';
 
 abstract class CurrencyExchangeDataSource {
-  Future<Response<dynamic>> getCurrencyExchange({
+  Future<Response<dynamic>> getFluctuationCurrencies({
     required CurrencyExchangeParametersModel parameters,
   });
 
   Future<Response<dynamic>> getAllCurrencies({
     required CurrencyExchangeParametersModel parameters,
+  });
+
+  Future<Response> getConvertCurrency({
+    required ConvertCurrencyParameterModel parameters,
   });
 }
 
@@ -20,7 +25,7 @@ class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
   final DioConsumer _dioConsumer;
 
   @override
-  Future<Response<dynamic>> getCurrencyExchange({
+  Future<Response<dynamic>> getFluctuationCurrencies({
     required CurrencyExchangeParametersModel parameters,
   }) async {
     final response = await _dioConsumer.get(
@@ -43,6 +48,21 @@ class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
       EndPoints.latest,
       queryParameters: {
         'base': parameters.base,
+      },
+    );
+    return response;
+  }
+
+  @override
+  Future<Response> getConvertCurrency({
+    required ConvertCurrencyParameterModel parameters,
+  }) async {
+    final response = await _dioConsumer.get(
+      EndPoints.convert,
+      queryParameters: {
+        'to': parameters.to,
+        'from': parameters.from,
+        'amount': parameters.amount,
       },
     );
     return response;

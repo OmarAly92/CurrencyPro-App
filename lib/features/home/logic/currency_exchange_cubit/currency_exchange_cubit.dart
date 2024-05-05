@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/global.dart';
 import '../../data/model/currency_exchange_models/all_currencies_model.dart';
+import '../../data/model/currency_exchange_models/currency_conversion_model.dart';
 import '../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
+import '../../data/model/widgets_model/convert_currency_parameter_model.dart';
 import '../../data/model/widgets_model/currency_exchange_parameters_model.dart';
 import '../../data/repository/currency_exchange_repository.dart';
 
@@ -34,8 +36,18 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
     }
   }
 
+  Future<void> getConvertCurrency({required ConvertCurrencyParameterModel parameters}) async {
+    emit(GetConvertCurrencyLoading());
+    final result = await _currencyExchangeRepository.getConvertCurrency(parameters: parameters);
+    if (result.isSuccess) {
+      emit(GetConvertCurrencySuccess(currencyConversion: result.value!));
+    } else {
+      emit(GetConvertCurrencyFailure(failureMessage: result.error.message));
+    }
+  }
+
   Future<Result<FluctuationCurrenciesModel>> _getFluctuationCurrencies() async {
-    final result = await _currencyExchangeRepository.getCurrencyExchange(
+    final result = await _currencyExchangeRepository.getFluctuationCurrencies(
         parameters: CurrencyExchangeParametersModel(
       symbols: symbols,
       base: fluctuationBase,

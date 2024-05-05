@@ -37,3 +37,30 @@ final class GetCurrencyExchangeFailure extends CurrencyExchangeState {
   @override
   List<Object> get props => [failureMessage];
 }
+
+final class GetConvertCurrencyLoading extends CurrencyExchangeState {
+  @override
+  List<Object> get props => [];
+}
+
+final class GetConvertCurrencySuccess extends CurrencyExchangeState {
+  final CurrencyConversionModel currencyConversion;
+
+  const GetConvertCurrencySuccess({
+    required this.currencyConversion,
+  });
+
+  @override
+  List<Object> get props => [currencyConversion];
+}
+
+final class GetConvertCurrencyFailure extends CurrencyExchangeState {
+  final String failureMessage;
+
+  const GetConvertCurrencyFailure({
+    required this.failureMessage,
+  });
+
+  @override
+  List<Object> get props => [failureMessage];
+}
