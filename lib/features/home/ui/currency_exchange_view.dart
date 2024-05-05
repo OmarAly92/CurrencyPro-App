@@ -17,12 +17,6 @@ class CurrencyExchangeView extends StatefulWidget {
 
 class _CurrencyExchangeViewState extends State<CurrencyExchangeView> {
   @override
-  void initState() {
-    super.initState();
-    context.read<CurrencyExchangeCubit>().getCurrencyExchange();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(

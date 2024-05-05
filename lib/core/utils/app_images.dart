@@ -1,5 +1,5 @@
 const String imgPath = 'assets/images';
 
 class AppImages {
-  static const String quote = '$imgPath/1x/quote.png';
+  static const String goldImage = '$imgPath/gold_image.png';
 }

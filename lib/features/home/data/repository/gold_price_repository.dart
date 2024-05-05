@@ -10,7 +10,7 @@ import '../model/gold_price_models/gold_price_request_parameters.dart';
 
 abstract class GoldPriceRepository {
   Future<Result<GoldPriceModel>> getGoldPrice({
-    required GoldPriceRequestParameters parameters,
+    GoldPriceRequestParameters? parameters,
   });
 }
 
@@ -22,7 +22,7 @@ class GoldPriceRepositoryImp implements GoldPriceRepository {
 
   @override
   Future<Result<GoldPriceModel>> getGoldPrice({
-    required GoldPriceRequestParameters parameters,
+    GoldPriceRequestParameters? parameters,
   }) async {
     int? statusCode;
     try {

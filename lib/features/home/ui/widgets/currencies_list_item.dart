@@ -28,20 +28,7 @@ class CurrenciesListItem extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: AppColors.secondaryColor,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              border: Border.all(
-                color: AppColors.appBlueColor,
-              ),
-            ),
-            child: Center(
-              child: currenciesListItemModel.widget,
-            ),
-          ),
-        ),
+        leading: currenciesListItemModel.widget,
         title: Text(
           currenciesListItemModel.currencyName,
           style: AppTextStyle.textStyle13,

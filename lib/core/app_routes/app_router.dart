@@ -17,10 +17,10 @@ class AppRouter {
             return MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: (context) => CurrencyExchangeCubit(sl()),
+                  create: (context) => CurrencyExchangeCubit(sl())..getCurrencyExchange(),
                 ),
                 BlocProvider(
-                  create: (context) => GoldPriceCubit(sl()),
+                  create: (context) => GoldPriceCubit(sl())..getGoldPrice(),
                 ),
               ],
               child: const HomeView(),

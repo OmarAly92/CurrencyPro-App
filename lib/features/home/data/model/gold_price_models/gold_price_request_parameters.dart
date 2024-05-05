@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 class GoldPriceRequestParameters extends Equatable {
-  final String metal;
-  final String countryCode;
+  final String? metal;
+  final String? countryCode;
 
   const GoldPriceRequestParameters({
-    this.metal = 'XAU',
-    this.countryCode = 'EGP',
+    this.metal,
+    this.countryCode,
   });
 
   @override
-  List<Object> get props => [metal, countryCode];
+  List<Object> get props => [metal!, countryCode!];
 }
