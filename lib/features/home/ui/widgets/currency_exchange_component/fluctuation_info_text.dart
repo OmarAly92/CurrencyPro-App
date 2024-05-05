@@ -58,11 +58,13 @@ class FluctuationInfoText extends StatelessWidget {
     }
   }
 
-  bool getIsNegativeNum() => isNegative(currencyExchangeModel.rates![symbols]!.changePct);
+  bool getIsNegativeNum() =>
+      isNegative(currencyExchangeModel.rates![fluctuationBase == symbols ? 'EUR' : symbols]!.changePct);
 
   bool getIsThereFluctuation() {
     return (currencyExchangeModel.fluctuation &&
-        currencyExchangeModel.rates![symbols]!.changePct.toStringAsFixed(2) == '0.00');
+        currencyExchangeModel.rates![fluctuationBase == symbols ? 'EUR' : symbols]!.changePct.toStringAsFixed(2) ==
+            '0.00');
   }
 
   bool isNegative(num number) {

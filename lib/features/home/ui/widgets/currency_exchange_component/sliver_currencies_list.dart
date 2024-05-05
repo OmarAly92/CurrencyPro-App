@@ -29,10 +29,8 @@ class _SliverCurrenciesListState extends State<SliverCurrenciesList> {
   @override
   void initState() {
     super.initState();
-    rates.addAll(widget.allCurrenciesModel.rates);
-    currenciesCode.addAll(AppConstants.getCurrenciesCode());
+    currenciesCode = [...AppConstants.getCurrenciesCode()];
     currenciesCode.remove(symbols);
-    rates.remove(symbols);
   }
 
   @override
@@ -42,13 +40,13 @@ class _SliverCurrenciesListState extends State<SliverCurrenciesList> {
         const SliverCurrenciesListHeaderRow(),
         const SliverToBoxAdapter(child: Gap(12)),
         SliverList.separated(
-          itemCount: currenciesCode.length,
+          itemCount: AppConstants.getCurrenciesCode().length - 1,
           separatorBuilder: (BuildContext context, int index) => const Gap(10),
           itemBuilder: (context, index) {
             return CurrenciesListItem(
               currenciesListItemModel: CurrenciesListItemModel(
                 currencyName: AppConstants.getCurrencyNameBySymbol(currenciesCode[index]),
-                buyPrice: (1 / rates[currenciesCode[index]]!).toStringAsFixed(2),
+                buyPrice: (1 / widget.allCurrenciesModel.rates[currenciesCode[index]]!).toStringAsFixed(2),
                 widget: Image.asset(
                   height: 35,
                   AppImages.currencyImage,

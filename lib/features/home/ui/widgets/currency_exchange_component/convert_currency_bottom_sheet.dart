@@ -33,7 +33,7 @@ class _ConvertCurrencyBottomSheetState extends State<ConvertCurrencyBottomSheet>
     super.initState();
     convertController = TextEditingController();
     fromController = TextEditingController(text: fluctuationBase);
-    toController = TextEditingController(text: symbols);
+    toController = TextEditingController(text: fluctuationBase == symbols ? 'EUR' : symbols);
   }
 
   @override

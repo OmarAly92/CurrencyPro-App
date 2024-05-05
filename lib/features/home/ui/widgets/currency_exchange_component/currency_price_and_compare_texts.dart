@@ -26,7 +26,9 @@ class CurrencyPriceAndCompareTexts extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
               children: [
-                TextSpan(text: currencyExchangeModel.rates![symbols]!.endRate.toStringAsFixed(2)),
+                TextSpan(
+                    text: currencyExchangeModel.rates![fluctuationBase == symbols ? 'EUR' : symbols]!.endRate
+                        .toStringAsFixed(2)),
                 TextSpan(
                   text: symbols,
                   style: AppTextStyle.textStyle10.copyWith(
