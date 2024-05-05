@@ -5,7 +5,7 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../data/model/currency_exchange_models/all_currencies_model.dart';
-import '../../../data/model/currencies_list_item_model.dart';
+import '../../../data/model/widgets_model/currencies_list_item_model.dart';
 import '../currencies_list_item.dart';
 import 'sliver_currencies_list_header_row.dart';
 

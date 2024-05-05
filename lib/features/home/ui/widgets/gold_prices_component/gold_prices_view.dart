@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../core/utils/app_colors.dart';
-import '../../../data/model/currencies_list_item_model.dart';
+import '../../../data/model/widgets_model/currencies_list_item_model.dart';
 import '../currencies_list_item.dart';
 
 class GoldPricesView extends StatelessWidget {

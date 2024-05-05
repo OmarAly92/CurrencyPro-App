@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/model/currency_exchange_models/all_currencies_model.dart';
 import '../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
-import '../../data/model/currency_exchange_parameters_model.dart';
+import '../../data/model/widgets_model/currency_exchange_parameters_model.dart';
 import '../../data/repository/currency_exchange_repository.dart';
 
 part 'currency_exchange_state.dart';
