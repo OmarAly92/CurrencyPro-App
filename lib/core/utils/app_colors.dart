@@ -9,6 +9,7 @@ abstract class AppColors {
   static Color appRedColor = CupertinoColors.destructiveRed;
   static const Color appBlueSecondaryColor = Color(0xff001664);
   static Color hint = Colors.grey;
+  static Color whiteColor = Colors.white;
 
   /// other color suggestion
 // static Color primaryColor = const Color(0xff232526);

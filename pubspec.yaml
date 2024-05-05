@@ -38,6 +38,8 @@ dependencies:
   intl: ^0.19.0
   # Easily add staggered animations to your ListView, GridView, Column and Row children as shown in Material Design guidelines
   flutter_staggered_animations: ^1.1.1
+  # A collection of loading indicators animated with flutter. Heavily
+  flutter_spinkit: ^5.2.1
 
 
 
