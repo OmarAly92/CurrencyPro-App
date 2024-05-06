@@ -1,6 +1,7 @@
-import 'package:currencypro/features/home/ui/widgets/gold_prices_component/get_gold_price_loading_shimmer.dart';
+import 'package:currencypro/core/widgets/app_error_widget.dart';
 import 'package:currencypro/core/widgets/app_refresh_indicator.dart';
 import 'package:currencypro/features/home/logic/gold_price_cubit/gold_price_cubit.dart';
+import 'package:currencypro/features/home/ui/widgets/gold_prices_component/get_gold_price_loading_shimmer.dart';
 import 'package:currencypro/features/home/ui/widgets/gold_prices_component/gold_price_success_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,25 +39,17 @@ class _GoldPricesViewState extends State<GoldPricesView> {
                 } else if (state is GetGoldPriceFailure) {
                   return SliverFillRemaining(
                     hasScrollBody: false,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const SizedBox.shrink(),
-                        Text(state.failureMessage),
-                        const SizedBox(height: 50),
-                      ],
+                    child: AppErrorWidget(
+                      failureMsg: state.failureMessage,
+                      onPressed: refreshState,
                     ),
                   );
                 } else {
-                  return const SliverFillRemaining(
+                  return SliverFillRemaining(
                     hasScrollBody: false,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox.shrink(),
-                        Text('Unknown State'),
-                        SizedBox(height: 50),
-                      ],
+                    child: AppErrorWidget(
+                      failureMsg: 'Unknown State',
+                      onPressed: refreshState,
                     ),
                   );
                 }
