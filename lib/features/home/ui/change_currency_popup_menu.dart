@@ -58,7 +58,7 @@ class _ChangeCurrencyPopupMenuState extends State<ChangeCurrencyPopupMenu> {
             Text(
               symbols,
               style: TextStyle(
-                color: widget.isConnected ? AppColors.appBlueColor : AppColors.appBlueColor.withOpacity(.4),
+                color: widget.isConnected ? AppColors.appBlueColor : AppColors.disableBlueColor,
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
               ),
@@ -66,7 +66,7 @@ class _ChangeCurrencyPopupMenuState extends State<ChangeCurrencyPopupMenu> {
             const SizedBox(width: 5),
             Icon(
               Icons.currency_exchange,
-              color: widget.isConnected ? AppColors.appBlueColor : AppColors.appBlueColor.withOpacity(.4),
+              color: widget.isConnected ? AppColors.appBlueColor : AppColors.disableBlueColor,
             ),
           ],
         ),

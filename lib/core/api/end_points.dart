@@ -3,7 +3,8 @@ abstract class EndPoints {
   static const String headerKeyCurrencies = 'apikey';
 
   // static const String apikeyValueCurrencies = 'X3TzOxC1hYTi6hZMjUKB3GV8rifqBaL3';
-  static const String apikeyValueCurrencies = 'PcCnuf4Et0n2cSNU0ZDUZL3cFh7VKXf2';
+  // static const String apikeyValueCurrencies = 'PcCnuf4Et0n2cSNU0ZDUZL3cFh7VKXf2';
+  static const String apikeyValueCurrencies = 'G1PWwkCzW5Tg8NjBr5WQCflQRNo0rk3G';
   static const String exchangeBaseUrl = 'https://api.apilayer.com/exchangerates_data';
   static const String latest = '/latest';
   static const String fluctuation = '/fluctuation';
