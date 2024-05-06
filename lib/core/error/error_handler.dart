@@ -53,7 +53,6 @@ class ErrorHandler implements Exception {
 }
 
 enum DataSource {
-  success,
   noContent,
   badRequest,
   forbidden,
@@ -99,8 +98,6 @@ extension DataSourceExtension on DataSource {
         return FailureHandler(ResponseCode.noInternetConnection, ResponseMessage.noInternetConnection);
       case DataSource.tooManyRequest:
         return FailureHandler(ResponseCode.tooManyRequest, ResponseMessage.tooManyRequest);
-      case DataSource.success:
-        return FailureHandler(ResponseCode.success, ResponseMessage.success);
       case DataSource.kDefault:
         return FailureHandler(ResponseCode.kDefault, ResponseMessage.kDefault);
     }
