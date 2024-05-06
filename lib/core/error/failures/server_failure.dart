@@ -1,11 +1,7 @@
-import 'package:equatable/equatable.dart';
+import 'failures.dart';
 
-import 'error_handler.dart';
-
-abstract class Failure extends Equatable {}
-
-class ServerException implements Failure {
-  const ServerException([this.message]);
+class ServerFailure implements Failure {
+  const ServerFailure([this.message]);
 
   final String? message;
 
@@ -18,55 +14,49 @@ class ServerException implements Failure {
   List<Object?> get props => [message];
 
   @override
-  bool? get stringify => throw UnimplementedError();
+  bool get stringify => true;
 }
 
-class FetchDataException extends ServerException {
+class FetchDataException extends ServerFailure {
   const FetchDataException([message]) : super('Error During Communication');
 }
 
-class BadRequestException extends ServerException {
+class BadRequestException extends ServerFailure {
   const BadRequestException([message]) : super('Bad Request');
 }
 
-class UnauthorizedException extends ServerException {
+class UnauthorizedException extends ServerFailure {
   const UnauthorizedException([message]) : super('Unauthorized');
 }
 
-class NotFoundException extends ServerException {
+class NotFoundException extends ServerFailure {
   const NotFoundException([message]) : super('Requested Info Not Found');
 }
 
-class ConflictException extends ServerException {
+class ConflictException extends ServerFailure {
   const ConflictException([message]) : super('Conflict Occurred');
 }
 
-class InternalServerErrorException extends ServerException {
+class InternalServerErrorException extends ServerFailure {
   const InternalServerErrorException([message]) : super('Internal Server Error');
 }
 
-class NoInternetConnectionException extends ServerException {
+class NoInternetConnectionException extends ServerFailure {
   const NoInternetConnectionException([message]) : super('No Internet Connection');
 }
 
-class OperationCanceledException extends ServerException {
+class OperationCanceledException extends ServerFailure {
   const OperationCanceledException([message]) : super('Operation Canceled');
 }
 
-class BadCertificateException extends ServerException {
+class BadCertificateException extends ServerFailure {
   const BadCertificateException([message]) : super('Bad SSL/TLS Certificate');
 }
 
-class ConnectionErrorException extends ServerException {
+class ConnectionErrorException extends ServerFailure {
   const ConnectionErrorException([message]) : super('Connection Error');
 }
 
-class UnexpectedException extends ServerException {
+class UnexpectedException extends ServerFailure {
   const UnexpectedException([message]) : super('Unexpected Error');
-}
-
-class LocalException implements Exception {}
-
-class LocalFailure extends Failures {
-  LocalFailure(super.code, super.message);
 }

@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
-import '../error/failures.dart';
+import '../error/failures/failures.dart';
+import '../error/failures/local_failure.dart';
+import '../error/failures/server_failure.dart';
 import 'app_colors.dart';
 import 'app_strings.dart';
 
@@ -116,7 +118,7 @@ class AppConstants {
   }
 
   static String mapFailureMsg(Failure failure) {
-    if (failure is ServerException) {
+    if (failure is ServerFailure) {
       return failure.message ?? AppStrings.unexpectedError;
     } else if (failure is LocalFailure) {
       return AppStrings.localFailure;

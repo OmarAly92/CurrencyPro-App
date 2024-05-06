@@ -4,7 +4,7 @@ import 'package:currencypro/core/api/status_code.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
-import '../error/failures.dart';
+import '../error/failures/server_failure.dart';
 import '../utils/service_locator.dart';
 import 'api_consumer.dart';
 import 'app_interceptors.dart';
@@ -58,7 +58,7 @@ class DioConsumer implements ApiConsumer {
     return response;
   }
 
-  ServerException handleDioError(DioException error) {
+  ServerFailure handleDioError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:

@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppThemes.dark(),
       onGenerateRoute: AppRouter.generateRoute,
-      // home: const CustomNavBar(),
     );
   }
 }
