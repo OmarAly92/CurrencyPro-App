@@ -1,0 +1,12 @@
+flutter_native_splash:
+  color: "#131316"
+  image: assets/images/currency_pro_splash.png
+
+  android_12:
+    color: "#131316"
+    image: assets/images/currency_pro_splash.png
+
+  # platform.
+  android: true
+  ios: true
+  web: false
