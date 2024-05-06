@@ -19,6 +19,14 @@ class AllCurrenciesModel extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'base': base,
+      'date': date,
+      'rates': rates,
+    };
+  }
+
   @override
   List<Object?> get props => [base, date, rates];
 }

@@ -69,4 +69,23 @@ class GoldPriceModel extends Equatable {
       priceGram10k: json['price_gram_10k']?.toDouble() ?? 0.0,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'timestamp': timestamp,
+      'metal': metal,
+      'currency': currency,
+      'open_time': openTime,
+      'price': price,
+      'ch': ch,
+      'price_gram_24k': priceGram24k,
+      'price_gram_22k': priceGram22k,
+      'price_gram_21k': priceGram21k,
+      'price_gram_20k': priceGram20k,
+      'price_gram_18k': priceGram18k,
+      'price_gram_16k': priceGram16k,
+      'price_gram_14k': priceGram14k,
+      'price_gram_10k': priceGram10k,
+    };
+  }
 }

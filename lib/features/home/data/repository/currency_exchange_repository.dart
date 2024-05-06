@@ -4,12 +4,12 @@ import 'package:logger/logger.dart';
 import '../../../../core/api/result.dart';
 import '../../../../core/error/error_handler.dart';
 import '../../../../core/utils/service_locator.dart';
+import '../data_source/remote_data_source/currency_exchange_remote_data_source.dart';
 import '../model/currency_exchange_models/all_currencies_model.dart';
 import '../model/currency_exchange_models/currency_conversion_model.dart';
 import '../model/currency_exchange_models/fluctuation_currencies_model.dart';
 import '../model/widgets_model/convert_currency_parameter_model.dart';
 import '../model/widgets_model/currency_exchange_parameters_model.dart';
-import '../remote_data_source/currency_exchange_data_source.dart';
 
 abstract class CurrencyExchangeRepository {
   Future<Result<FluctuationCurrenciesModel>> getFluctuationCurrencies({
@@ -29,7 +29,7 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
   CurrencyExchangeRepositoryImp(this._currencyExchangeDataSource);
 
   final Logger _logger = sl();
-  final CurrencyExchangeDataSource _currencyExchangeDataSource;
+  final CurrencyExchangeRemoteDataSource _currencyExchangeDataSource;
 
   @override
   Future<Result<FluctuationCurrenciesModel>> getFluctuationCurrencies({

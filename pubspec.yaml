@@ -24,10 +24,8 @@ dependencies:
   gap: ^3.0.1
   # Functional Programming in Dart. Purify your Dart code using efficient immutable data structures, monads, lenses and other FP tools
   internet_connection_checker: ^1.0.0+1
-
   # for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.
-  #  shared_preferences: ^2.2.3
-
+  shared_preferences: ^2.2.3
   # Simple direct Service Locator that allows to decouple the interface from a concrete implementation and to access the concrete implementation from everywhere in your App
   get_it: ^7.7.0
   # Small, easy to use and extensible logger which prints beautiful logs.

@@ -1,10 +1,10 @@
-import 'package:currencypro/features/home/data/remote_data_source/gold_price_data_source.dart';
 import 'package:logger/logger.dart';
 
 import '../../../../core/api/result.dart';
 import '../../../../core/error/error_handler.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/utils/service_locator.dart';
+import '../data_source/remote_data_source/gold_price_remote_data_source.dart';
 import '../model/gold_price_models/gold_price_model.dart';
 import '../model/gold_price_models/gold_price_request_parameters.dart';
 

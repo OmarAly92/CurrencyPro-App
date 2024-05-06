@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 
-import '../../../../core/api/dio_consumer.dart';
-import '../../../../core/api/end_points.dart';
-import '../model/widgets_model/convert_currency_parameter_model.dart';
-import '../model/widgets_model/currency_exchange_parameters_model.dart';
+import '../../../../../core/api/dio_consumer.dart';
+import '../../../../../core/api/end_points.dart';
+import '../../model/widgets_model/convert_currency_parameter_model.dart';
+import '../../model/widgets_model/currency_exchange_parameters_model.dart';
 
-abstract class CurrencyExchangeDataSource {
+abstract class CurrencyExchangeRemoteDataSource {
   Future<Response<dynamic>> getFluctuationCurrencies({
     required CurrencyExchangeParametersModel parameters,
   });
@@ -19,8 +19,8 @@ abstract class CurrencyExchangeDataSource {
   });
 }
 
-class CurrencyExchangeDataSourceImp implements CurrencyExchangeDataSource {
-  const CurrencyExchangeDataSourceImp(this._dioConsumer);
+class CurrencyExchangeRemoteDataSourceImp implements CurrencyExchangeRemoteDataSource {
+  const CurrencyExchangeRemoteDataSourceImp(this._dioConsumer);
 
   final DioConsumer _dioConsumer;
 

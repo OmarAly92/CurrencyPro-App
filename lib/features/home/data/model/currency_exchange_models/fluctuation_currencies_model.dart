@@ -31,6 +31,17 @@ class FluctuationCurrenciesModel extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'success': success,
+      'fluctuation': fluctuation,
+      'start_date': startDate,
+      'end_date': endDate,
+      'base': base,
+      'rates': rates?.map((key, value) => MapEntry(key, value.toJson())),
+    };
+  }
+
   @override
   List<Object?> get props => [success, fluctuation, startDate, endDate, base, rates];
 }
@@ -55,6 +66,15 @@ class CurrencyRates extends Equatable {
       change: json['change'] ?? 0.0,
       changePct: json['change_pct'] ?? 0.0,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'start_rate': startRate,
+      'end_rate': endRate,
+      'change': change,
+      'change_pct': changePct,
+    };
   }
 
   @override
