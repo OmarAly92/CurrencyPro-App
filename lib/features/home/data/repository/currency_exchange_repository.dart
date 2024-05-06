@@ -1,9 +1,12 @@
+import 'package:currencypro/core/error/failures/local_failure.dart';
 import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:logger/logger.dart';
 
 import '../../../../core/api/result.dart';
 import '../../../../core/error/error_handler.dart';
+import '../../../../core/network/network_status.dart';
 import '../../../../core/utils/service_locator.dart';
+import '../data_source/local_data_source/currency_exchange_local_data_source.dart';
 import '../data_source/remote_data_source/currency_exchange_remote_data_source.dart';
 import '../model/currency_exchange_models/all_currencies_model.dart';
 import '../model/currency_exchange_models/currency_conversion_model.dart';
@@ -26,16 +29,88 @@ abstract class CurrencyExchangeRepository {
 }
 
 class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
-  CurrencyExchangeRepositoryImp(this._currencyExchangeDataSource);
+  CurrencyExchangeRepositoryImp(
+    this._currencyExchangeDataSource,
+    this._networkStatus,
+    this._currencyExchangeLocalDataSource,
+  );
 
   final Logger _logger = sl();
   final CurrencyExchangeRemoteDataSource _currencyExchangeDataSource;
+  final CurrencyExchangeLocalDataSource _currencyExchangeLocalDataSource;
+  final NetworkStatus _networkStatus;
 
   @override
   Future<Result<FluctuationCurrenciesModel>> getFluctuationCurrencies({
     required CurrencyExchangeParametersModel parameters,
   }) async {
     int? statusCode;
+    final isConnected = await _networkStatus.isConnected;
+    if (isConnected) {
+      final result = await _executeFluctuationRemoteConnection(
+        parameters: parameters,
+        statusCode: statusCode,
+      );
+      return result;
+    } else {
+      final result = await _executeFluctuationLocalConnection(
+        parameters: parameters,
+        statusCode: statusCode,
+      );
+      return result;
+    }
+  }
+
+  @override
+  Future<Result<AllCurrenciesModel>> getAllCurrencies({
+    required CurrencyExchangeParametersModel parameters,
+  }) async {
+    int? statusCode;
+    final isConnected = await _networkStatus.isConnected;
+    if (isConnected) {
+      final result = await _executeAllCurrenciesRemoteConnection(
+        parameters: parameters,
+        statusCode: statusCode,
+      );
+      return result;
+    } else {
+      final result = await _executeAllCurrenciesLocalConnection(
+        parameters: parameters,
+        statusCode: statusCode,
+      );
+      return result;
+    }
+  }
+
+  @override
+  Future<Result<CurrencyConversionModel>> getConvertCurrency({
+    required ConvertCurrencyParameterModel parameters,
+  }) async {
+    int? statusCode;
+    final isConnected = await _networkStatus.isConnected;
+    if (isConnected) {
+      try {
+        final response = await _currencyExchangeDataSource.getConvertCurrency(parameters: parameters);
+        statusCode = response.statusCode;
+        if (statusCode == 200) {
+          final result = CurrencyConversionModel.fromJson(AppConstants.handleResponseAsJson(response));
+          return Result.success(result);
+        } else {
+          throw Exception(response.data['message']);
+        }
+      } catch (error) {
+        _logger.e(error);
+        return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
+      }
+    } else {
+      return Result.failure(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  Future<Result<FluctuationCurrenciesModel>> _executeFluctuationRemoteConnection({
+    required CurrencyExchangeParametersModel parameters,
+    required int? statusCode,
+  }) async {
     try {
       final response = await _currencyExchangeDataSource.getFluctuationCurrencies(parameters: parameters);
       statusCode = response.statusCode;
@@ -51,12 +126,10 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
     }
   }
 
-  @override
-  Future<Result<AllCurrenciesModel>> getAllCurrencies({
+  Future<Result<AllCurrenciesModel>> _executeAllCurrenciesRemoteConnection({
     required CurrencyExchangeParametersModel parameters,
+    required int? statusCode,
   }) async {
-    int? statusCode;
-
     try {
       final response = await _currencyExchangeDataSource.getAllCurrencies(parameters: parameters);
       statusCode = response.statusCode;
@@ -72,21 +145,27 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
     }
   }
 
-  @override
-  Future<Result<CurrencyConversionModel>> getConvertCurrency({
-    required ConvertCurrencyParameterModel parameters,
+  Future<Result<FluctuationCurrenciesModel>> _executeFluctuationLocalConnection({
+    required CurrencyExchangeParametersModel parameters,
+    required int? statusCode,
   }) async {
-    int? statusCode;
     try {
-      final response = await _currencyExchangeDataSource.getConvertCurrency(parameters: parameters);
-      statusCode = response.statusCode;
-      if (statusCode == 200) {
-        final result = CurrencyConversionModel.fromJson(AppConstants.handleResponseAsJson(response));
-        return Result.success(result);
-      } else {
-        throw Exception(response.data['message']);
-      }
-    } catch (error) {
+      final localRandomQuote = await _currencyExchangeLocalDataSource.getFluctuationCurrencies();
+      return Result.success(localRandomQuote);
+    } on LocalFailure catch (error) {
+      _logger.e(error);
+      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
+    }
+  }
+
+  Future<Result<AllCurrenciesModel>> _executeAllCurrenciesLocalConnection({
+    required CurrencyExchangeParametersModel parameters,
+    required int? statusCode,
+  }) async {
+    try {
+      final localRandomQuote = await _currencyExchangeLocalDataSource.getAllCurrencies();
+      return Result.success(localRandomQuote);
+    } on LocalFailure catch (error) {
       _logger.e(error);
       return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
     }

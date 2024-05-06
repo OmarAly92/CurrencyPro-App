@@ -1,3 +1,5 @@
+import 'package:currencypro/features/home/data/data_source/local_data_source/currency_exchange_local_data_source.dart';
+import 'package:currencypro/features/home/data/data_source/local_data_source/gold_price_local_data_source.dart';
 import 'package:currencypro/features/home/data/repository/currency_exchange_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -22,12 +24,14 @@ class ServiceLocator {
     sl.registerFactory(() => CurrencyExchangeCubit(sl()));
 
     // Repository
-    sl.registerLazySingleton<CurrencyExchangeRepository>(() => CurrencyExchangeRepositoryImp(sl()));
+    sl.registerLazySingleton<CurrencyExchangeRepository>(() => CurrencyExchangeRepositoryImp(sl(), sl(), sl()));
     sl.registerLazySingleton<GoldPriceRepository>(() => GoldPriceRepositoryImp(sl()));
 
     // Data Sources
     sl.registerLazySingleton<CurrencyExchangeRemoteDataSource>(() => CurrencyExchangeRemoteDataSourceImp(sl()));
     sl.registerLazySingleton<GoldPriceRemoteDataSource>(() => GoldPriceRemoteDataSourceImp(sl()));
+    sl.registerLazySingleton<CurrencyExchangeLocalDataSource>(() => CurrencyExchangeLocalDataSourceImp(sl()));
+    sl.registerLazySingleton<GoldPricesLocalDataSource>(() => GoldPricesLocalDataSourceImp(sl()));
 
     /// Core
     sl.registerLazySingleton<NetworkStatus>(() => NetworkStatusImp(sl()));

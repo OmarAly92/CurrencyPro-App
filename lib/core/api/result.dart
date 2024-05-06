@@ -6,6 +6,7 @@ class Result<T> {
   Result.failure(this._error) : _value = null;
 
   final T? _value;
+
   final FailureHandler _error;
 
   bool get isSuccess => _value != null;
