@@ -33,24 +33,20 @@ class GoldPriceRepositoryImp implements GoldPriceRepository {
   Future<Result<GoldPriceModel>> getGoldPrice({
     GoldPriceRequestParameters? parameters,
   }) async {
-    int? statusCode;
     final isConnected = await _networkStatus.isConnected;
     if (isConnected) {
-      final result = await _executeGoldPriceRemoteConnection(
-        parameters: parameters,
-        statusCode: statusCode,
-      );
+      final result = await _executeGoldPriceRemoteConnection(parameters: parameters);
       return result;
     } else {
-      final result = await _executeGoldPriceLocalConnection(statusCode: statusCode);
+      final result = await _executeGoldPriceLocalConnection();
       return result;
     }
   }
 
   Future<Result<GoldPriceModel>> _executeGoldPriceRemoteConnection({
     GoldPriceRequestParameters? parameters,
-    required int? statusCode,
   }) async {
+    int? statusCode;
     try {
       final response = await _goldPriceRemoteDataSource.getGoldPrice(parameters: parameters);
       statusCode = response.statusCode;
@@ -67,15 +63,13 @@ class GoldPriceRepositoryImp implements GoldPriceRepository {
     }
   }
 
-  Future<Result<GoldPriceModel>> _executeGoldPriceLocalConnection({
-    required int? statusCode,
-  }) async {
+  Future<Result<GoldPriceModel>> _executeGoldPriceLocalConnection() async {
     try {
       final result = await _goldPriceLocalDataSource.getGoldPrice();
       return Result.success(result);
     } on LocalFailure catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
+      return Result.failure(ErrorHandler.handle(error, statusCode: ResponseCode.cacheError).failureHandler);
     }
   }
 }

@@ -44,19 +44,12 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
   Future<Result<FluctuationCurrenciesModel>> getFluctuationCurrencies({
     required CurrencyExchangeParametersModel parameters,
   }) async {
-    int? statusCode;
     final isConnected = await _networkStatus.isConnected;
     if (isConnected) {
-      final result = await _executeFluctuationRemoteConnection(
-        parameters: parameters,
-        statusCode: statusCode,
-      );
+      final result = await _executeFluctuationRemoteConnection(parameters: parameters);
       return result;
     } else {
-      final result = await _executeFluctuationLocalConnection(
-        parameters: parameters,
-        statusCode: statusCode,
-      );
+      final result = await _executeFluctuationLocalConnection();
       return result;
     }
   }
@@ -65,19 +58,12 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
   Future<Result<AllCurrenciesModel>> getAllCurrencies({
     required CurrencyExchangeParametersModel parameters,
   }) async {
-    int? statusCode;
     final isConnected = await _networkStatus.isConnected;
     if (isConnected) {
-      final result = await _executeAllCurrenciesRemoteConnection(
-        parameters: parameters,
-        statusCode: statusCode,
-      );
+      final result = await _executeAllCurrenciesRemoteConnection(parameters: parameters);
       return result;
     } else {
-      final result = await _executeAllCurrenciesLocalConnection(
-        parameters: parameters,
-        statusCode: statusCode,
-      );
+      final result = await _executeAllCurrenciesLocalConnection();
       return result;
     }
   }
@@ -109,8 +95,8 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
 
   Future<Result<FluctuationCurrenciesModel>> _executeFluctuationRemoteConnection({
     required CurrencyExchangeParametersModel parameters,
-    required int? statusCode,
   }) async {
+    int? statusCode;
     try {
       final response = await _currencyExchangeDataSource.getFluctuationCurrencies(parameters: parameters);
       statusCode = response.statusCode;
@@ -129,8 +115,9 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
 
   Future<Result<AllCurrenciesModel>> _executeAllCurrenciesRemoteConnection({
     required CurrencyExchangeParametersModel parameters,
-    required int? statusCode,
   }) async {
+    int? statusCode;
+
     try {
       final response = await _currencyExchangeDataSource.getAllCurrencies(parameters: parameters);
       statusCode = response.statusCode;
@@ -147,29 +134,23 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
     }
   }
 
-  Future<Result<FluctuationCurrenciesModel>> _executeFluctuationLocalConnection({
-    required CurrencyExchangeParametersModel parameters,
-    required int? statusCode,
-  }) async {
+  Future<Result<FluctuationCurrenciesModel>> _executeFluctuationLocalConnection() async {
     try {
       final localRandomQuote = await _currencyExchangeLocalDataSource.getFluctuationCurrencies();
       return Result.success(localRandomQuote);
     } on LocalFailure catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
+      return Result.failure(ErrorHandler.handle(error, statusCode: ResponseCode.cacheError).failureHandler);
     }
   }
 
-  Future<Result<AllCurrenciesModel>> _executeAllCurrenciesLocalConnection({
-    required CurrencyExchangeParametersModel parameters,
-    required int? statusCode,
-  }) async {
+  Future<Result<AllCurrenciesModel>> _executeAllCurrenciesLocalConnection() async {
     try {
       final localRandomQuote = await _currencyExchangeLocalDataSource.getAllCurrencies();
       return Result.success(localRandomQuote);
     } on LocalFailure catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
+      return Result.failure(ErrorHandler.handle(error, statusCode: ResponseCode.cacheError).failureHandler);
     }
   }
 }
