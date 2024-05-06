@@ -14,7 +14,7 @@ class AppErrorWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
+        const Icon(
           Icons.error_outline,
           color: AppColors.primaryColor,
           size: 250,
@@ -36,23 +36,30 @@ class AppErrorWidget extends StatelessWidget {
           ),
         ),
         const Gap(20),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(
-              vertical: 12,
-              horizontal: 55,
-            ),
-          ),
-          onPressed: onPressed,
-          child: const Text(
-            'Reload Screen',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
-          ),
-        ),
+        Builder(builder: (context) {
+          if (onPressed != null) {
+            return ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 55,
+                ),
+              ),
+              onPressed: onPressed,
+              child: const Text(
+                'Reload Screen',
+                style: TextStyle(
+                  color: AppColors.secondaryColor,
+                  // color: AppColors.appBlueColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        }),
         const Gap(200),
       ],
     );
