@@ -15,7 +15,7 @@ class CurrencyExchangeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimationConfiguration.synchronized(
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 200),
       child: SlideAnimation(
         duration: const Duration(milliseconds: AppConstants.slideAnimation),
         child: FadeInAnimation(
