@@ -24,8 +24,10 @@ dependencies:
   gap: ^3.0.1
   # Functional Programming in Dart. Purify your Dart code using efficient immutable data structures, monads, lenses and other FP tools
   internet_connection_checker: ^1.0.0+1
+
   # for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.
-  shared_preferences: ^2.2.3
+  #  shared_preferences: ^2.2.3
+
   # Simple direct Service Locator that allows to decouple the interface from a concrete implementation and to access the concrete implementation from everywhere in your App
   get_it: ^7.7.0
   # Small, easy to use and extensible logger which prints beautiful logs.
@@ -54,6 +56,14 @@ dev_dependencies:
   flutter_lints: ^3.0.2
   # A command-line tool that simplifies the task of updating your Flutter app's launcher icon.
   icons_launcher: ^2.1.7
+  # A full featured library for writing and running Dart tests across platforms.
+  test: ^1.24.9
+  # A mock framework inspired by Mockito with APIs for Fakes, Mocks, behavior verification, and stubbing.
+  mockito: ^5.4.4
+  # A build system for Dart code generation and modular compilation.
+  build_runner: ^2.4.9
+
+
 
 flutter:
 

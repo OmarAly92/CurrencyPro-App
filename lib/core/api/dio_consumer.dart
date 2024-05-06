@@ -10,7 +10,7 @@ import 'api_consumer.dart';
 import 'app_interceptors.dart';
 
 class DioConsumer implements ApiConsumer {
-  DioConsumer(this.client, {this.isGoldRequest = false}) {
+  DioConsumer(this.client) {
     (client.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
       final client = HttpClient();
       client.badCertificateCallback = (cert, host, port) => true;
@@ -24,7 +24,6 @@ class DioConsumer implements ApiConsumer {
   }
 
   final Dio client;
-  final bool isGoldRequest;
 
   @override
   Future<Response> get(String path, {Map<String, dynamic>? queryParameters}) async {

@@ -1,7 +1,6 @@
 import 'package:currencypro/core/api/status_code.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:logger/logger.dart';
 
 import '../utils/app_strings.dart';
 import 'end_points.dart';
@@ -9,7 +8,6 @@ import 'end_points.dart';
 class AppInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    Logger().wtf(EndPoints.currenciesExchangeEndPoints.contains(options.path));
     if (EndPoints.currenciesExchangeEndPoints.contains(options.path)) {
       options
         ..baseUrl = EndPoints.exchangeBaseUrl

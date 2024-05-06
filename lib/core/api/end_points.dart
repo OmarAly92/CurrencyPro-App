@@ -12,6 +12,6 @@ abstract class EndPoints {
 
   /// Gold Price Api
   static const String headerKeyGoldPrice = 'x-access-token';
-  static const String apikeyValueGoldPrice = 'goldapi-blc4slvmerzj8-io';
+  static const String apikeyValueGoldPrice = 'goldapi-1e9gslvv1xk46-io';
   static const String goldPriceBaseUrl = 'https://www.goldapi.io/api';
 }
