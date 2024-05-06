@@ -17,7 +17,7 @@ class ConnectivityStatusWidget extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.symmetric(
-            vertical: .8,
+            vertical: 3,
             horizontal: 4,
           ),
           decoration: BoxDecoration(
@@ -34,7 +34,7 @@ class ConnectivityStatusWidget extends StatelessWidget {
             isConnected ? 'Connected' : 'Disconnected',
             style: AppTextStyle.textStyle10.copyWith(
               color: AppColors.secondaryColor,
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.w700,
               fontSize: 10.3,
             ),
           ),

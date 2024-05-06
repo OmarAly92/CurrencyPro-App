@@ -1,7 +1,6 @@
 import 'package:currencypro/core/utils/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppThemes {
   static ThemeData dark() {
@@ -9,8 +8,8 @@ abstract class AppThemes {
       scaffoldBackgroundColor: AppColors.primaryColor,
       primaryTextTheme: Typography.whiteCupertino,
       iconTheme: const IconThemeData(color: Colors.white),
-      popupMenuTheme: PopupMenuThemeData(color: AppColors.secondaryColor),
-      dialogTheme: DialogTheme(
+      popupMenuTheme: const PopupMenuThemeData(color: AppColors.secondaryColor),
+      dialogTheme: const DialogTheme(
         backgroundColor: AppColors.primaryColor,
       ),
       radioTheme: const RadioThemeData(
@@ -27,31 +26,25 @@ abstract class AppThemes {
         seedColor: Colors.white,
         surfaceTint: Colors.white,
       ),
-      tabBarTheme: TabBarTheme(
+      tabBarTheme: const TabBarTheme(
         dividerColor: AppColors.secondaryColor,
         indicatorColor: AppColors.appBlueColor,
         unselectedLabelColor: Colors.white,
         labelColor: AppColors.appBlueColor,
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         color: AppColors.secondaryColor,
-        actionsIconTheme: const IconThemeData(color: Colors.white),
+        actionsIconTheme: IconThemeData(color: Colors.white),
       ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.secondaryColor,
-        unselectedIconTheme: const IconThemeData(color: Colors.white),
+        unselectedIconTheme: IconThemeData(color: Colors.white),
         unselectedItemColor: Colors.white,
-        unselectedLabelStyle: const TextStyle(color: Colors.white),
+        unselectedLabelStyle: TextStyle(color: Colors.white),
       ),
       useMaterial3: true,
-      fontFamily: "Cairo",
+      fontFamily: 'Poppins',
       hintColor: Colors.white,
-      textTheme: GoogleFonts.poppinsTextTheme(
-        const TextTheme(
-          headlineLarge: TextStyle(color: Colors.white),
-          titleSmall: TextStyle(color: Colors.white),
-        ),
-      ),
     );
   }
 }
