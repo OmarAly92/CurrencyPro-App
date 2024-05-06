@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/app_colors.dart';
@@ -15,10 +16,11 @@ class ConnectivityStatusWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
           padding: const EdgeInsets.symmetric(
             vertical: 3,
-            horizontal: 4,
+            horizontal: 4.5,
           ),
           decoration: BoxDecoration(
               color: isConnected ? AppColors.appGreenColor : AppColors.appRedColor,

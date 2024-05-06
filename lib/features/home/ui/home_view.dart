@@ -88,7 +88,7 @@ class _HomeViewState extends State<HomeView> {
                           Text(
                             symbols,
                             style: TextStyle(
-                              color: state ? AppColors.appBlueColor : AppColors.appBlueColor.withOpacity(.5),
+                              color: state ? AppColors.appBlueColor : AppColors.appBlueColor.withOpacity(.4),
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
                             ),
@@ -96,7 +96,7 @@ class _HomeViewState extends State<HomeView> {
                           const SizedBox(width: 5),
                           Icon(
                             Icons.currency_exchange,
-                            color: state ? AppColors.appBlueColor : AppColors.appBlueColor.withOpacity(.5),
+                            color: state ? AppColors.appBlueColor : AppColors.appBlueColor.withOpacity(.4),
                           ),
                         ],
                       ),
