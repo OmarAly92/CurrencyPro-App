@@ -3,13 +3,13 @@ import 'package:dio/dio.dart';
 import '../../../../../core/api/dio_consumer.dart';
 import '../../model/gold_price_models/gold_price_request_parameters.dart';
 
-abstract class GoldPriceRemoteDataSource {
+abstract class GoldPricesRemoteDataSource {
   Future<Response<dynamic>> getGoldPrice({
     GoldPriceRequestParameters? parameters,
   });
 }
 
-class GoldPriceRemoteDataSourceImp implements GoldPriceRemoteDataSource {
+class GoldPriceRemoteDataSourceImp implements GoldPricesRemoteDataSource {
   const GoldPriceRemoteDataSourceImp(this._dioConsumer);
 
   final DioConsumer _dioConsumer;

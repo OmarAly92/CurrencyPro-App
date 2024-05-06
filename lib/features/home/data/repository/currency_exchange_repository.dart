@@ -36,7 +36,6 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
   );
 
   final Logger _logger;
-
   final CurrencyExchangeRemoteDataSource _currencyExchangeDataSource;
   final CurrencyExchangeLocalDataSource _currencyExchangeLocalDataSource;
   final NetworkStatus _networkStatus;
