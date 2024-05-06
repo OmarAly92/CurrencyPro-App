@@ -20,13 +20,13 @@ class GoldPriceRepositoryImp implements GoldPriceRepository {
   GoldPriceRepositoryImp(
     this._goldPriceRemoteDataSource,
     this._logger,
-    this._currencyExchangeLocalDataSource,
+    this._goldPriceLocalDataSource,
     this._networkStatus,
   );
 
   final Logger _logger;
   final GoldPricesRemoteDataSource _goldPriceRemoteDataSource;
-  final GoldPricesLocalDataSource _currencyExchangeLocalDataSource;
+  final GoldPricesLocalDataSource _goldPriceLocalDataSource;
   final NetworkStatus _networkStatus;
 
   @override
@@ -42,10 +42,7 @@ class GoldPriceRepositoryImp implements GoldPriceRepository {
       );
       return result;
     } else {
-      final result = await _executeGoldPriceLocalConnection(
-        parameters: parameters,
-        statusCode: statusCode,
-      );
+      final result = await _executeGoldPriceLocalConnection(statusCode: statusCode);
       return result;
     }
   }
@@ -59,7 +56,7 @@ class GoldPriceRepositoryImp implements GoldPriceRepository {
       statusCode = response.statusCode;
       if (statusCode == 200) {
         final result = GoldPriceModel.fromJson(AppConstants.handleResponseAsJson(response));
-        await _currencyExchangeLocalDataSource.cacheGoldPrice(result);
+        await _goldPriceLocalDataSource.cacheGoldPrice(result);
         return Result.success(result);
       } else {
         throw Exception(response.data['message']);
@@ -71,11 +68,10 @@ class GoldPriceRepositoryImp implements GoldPriceRepository {
   }
 
   Future<Result<GoldPriceModel>> _executeGoldPriceLocalConnection({
-    GoldPriceRequestParameters? parameters,
     required int? statusCode,
   }) async {
     try {
-      final result = await _currencyExchangeLocalDataSource.getGoldPrice();
+      final result = await _goldPriceLocalDataSource.getGoldPrice();
       return Result.success(result);
     } on LocalFailure catch (error) {
       _logger.e(error);

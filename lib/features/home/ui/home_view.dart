@@ -54,6 +54,7 @@ class _HomeViewState extends State<HomeView> {
                   ConnectivityStatusWidget(isConnected: state),
                   const SizedBox(width: 10),
                   PopupMenuButton<String>(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     enabled: state,
                     tooltip: 'Change Currency',
                     onSelected: (value) {
@@ -77,22 +78,28 @@ class _HomeViewState extends State<HomeView> {
                         );
                       }).toList();
                     },
-                    child: Row(
-                      children: [
-                        Text(
-                          symbols,
-                          style: const TextStyle(
-                            color: AppColors.appBlueColor,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 3,
+                        vertical: 5,
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            symbols,
+                            style: TextStyle(
+                              color: state ? AppColors.appBlueColor : AppColors.appBlueColor.withOpacity(.5),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 5),
-                        const Icon(
-                          Icons.currency_exchange,
-                          color: AppColors.appBlueColor,
-                        ),
-                      ],
+                          const SizedBox(width: 5),
+                          Icon(
+                            Icons.currency_exchange,
+                            color: state ? AppColors.appBlueColor : AppColors.appBlueColor.withOpacity(.5),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
