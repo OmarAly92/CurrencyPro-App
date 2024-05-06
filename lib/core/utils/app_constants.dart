@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:currencypro/core/utils/service_locator.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +10,18 @@ import 'package:intl/intl.dart';
 import '../error/failures/failure.dart';
 import '../error/failures/local_failure.dart';
 import '../error/failures/server_failure.dart';
+import '../network/network_status.dart';
 import 'app_colors.dart';
 import 'app_strings.dart';
 
 class AppConstants {
   static const int slideAnimation = 350;
   static const int fadInAnimation = 350;
+
+  static Future<bool> isConnected() async {
+    final NetworkStatus networkStatus = sl();
+    return await networkStatus.isConnected;
+  }
 
   static void showErrorDialog(
     BuildContext context, {

@@ -5,7 +5,6 @@ import 'package:logger/logger.dart';
 import '../../../../core/api/result.dart';
 import '../../../../core/error/error_handler.dart';
 import '../../../../core/network/network_status.dart';
-import '../../../../core/utils/service_locator.dart';
 import '../data_source/local_data_source/currency_exchange_local_data_source.dart';
 import '../data_source/remote_data_source/currency_exchange_remote_data_source.dart';
 import '../model/currency_exchange_models/all_currencies_model.dart';
@@ -33,9 +32,11 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
     this._currencyExchangeDataSource,
     this._networkStatus,
     this._currencyExchangeLocalDataSource,
+    this._logger,
   );
 
-  final Logger _logger = sl();
+  final Logger _logger;
+
   final CurrencyExchangeRemoteDataSource _currencyExchangeDataSource;
   final CurrencyExchangeLocalDataSource _currencyExchangeLocalDataSource;
   final NetworkStatus _networkStatus;
@@ -116,6 +117,7 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
       statusCode = response.statusCode;
       if (statusCode == 200) {
         final result = FluctuationCurrenciesModel.fromJson(AppConstants.handleResponseAsJson(response));
+        _currencyExchangeLocalDataSource.cacheFluctuationCurrencies(result);
         return Result.success(result);
       } else {
         throw Exception(response.data['message']);
@@ -135,6 +137,7 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
       statusCode = response.statusCode;
       if (statusCode == 200) {
         final result = AllCurrenciesModel.fromJson(AppConstants.handleResponseAsJson(response));
+        _currencyExchangeLocalDataSource.cacheAllCurrencies(result);
         return Result.success(result);
       } else {
         throw Exception(response.data['message']);

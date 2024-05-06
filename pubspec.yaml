@@ -22,8 +22,8 @@ dependencies:
   fluttertoast: ^8.2.5
   # Flutter widgets for easily adding gaps inside Flex widgets such as Columns and Rows or scrolling views.
   gap: ^3.0.1
-  # Functional Programming in Dart. Purify your Dart code using efficient immutable data structures, monads, lenses and other FP tools
-  internet_connection_checker: ^1.0.0+1
+  # A Flutter package to check your internet connection with millisecond response times, even on mobile networks!
+  internet_connection_checker_plus: ^2.3.0
   # for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.
   shared_preferences: ^2.2.3
   # Simple direct Service Locator that allows to decouple the interface from a concrete implementation and to access the concrete implementation from everywhere in your App

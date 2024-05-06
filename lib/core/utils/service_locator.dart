@@ -3,7 +3,7 @@ import 'package:currencypro/features/home/data/data_source/local_data_source/gol
 import 'package:currencypro/features/home/data/repository/currency_exchange_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,7 +24,8 @@ class ServiceLocator {
     sl.registerFactory(() => CurrencyExchangeCubit(sl()));
 
     // Repository
-    sl.registerLazySingleton<CurrencyExchangeRepository>(() => CurrencyExchangeRepositoryImp(sl(), sl(), sl()));
+    sl.registerLazySingleton<CurrencyExchangeRepository>(
+        () => CurrencyExchangeRepositoryImp(sl(), sl(), sl(), sl()));
     sl.registerLazySingleton<GoldPriceRepository>(() => GoldPriceRepositoryImp(sl()));
 
     // Data Sources
@@ -53,6 +54,6 @@ class ServiceLocator {
           error: true,
         ));
     sl.registerLazySingleton<Dio>(() => Dio());
-    sl.registerLazySingleton<InternetConnectionChecker>(() => InternetConnectionChecker());
+    sl.registerLazySingleton<InternetConnection>(() => InternetConnection.createInstance());
   }
 }
