@@ -19,7 +19,7 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
   final CurrencyExchangeRepository _currencyExchangeRepository;
 
   var dateTimeNow = DateTime.now();
-  var dateTimeYesterday = DateTime.now().subtract(const Duration(days: 1));
+  var dateTimeYesterday = DateTime.now().subtract(const Duration(days: 7));
 
   Future<void> getCurrencyExchange() async {
     emit(CurrencyExchangeInitial());

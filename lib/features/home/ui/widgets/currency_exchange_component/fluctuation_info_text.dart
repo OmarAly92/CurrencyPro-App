@@ -30,6 +30,7 @@ class FluctuationInfoText extends StatelessWidget {
             text: TextSpan(
               style: AppTextStyle.textStyle10.copyWith(
                 fontWeight: FontWeight.w500,
+                fontSize: 10.5,
               ),
               children: [
                 const TextSpan(text: 'Buying price'),
@@ -39,15 +40,17 @@ class FluctuationInfoText extends StatelessWidget {
                   style: AppTextStyle.textStyle10.copyWith(
                     color: AppColors.appBlueColor,
                     fontWeight: FontWeight.w600,
+                    fontSize: 10.5,
                   ),
                 ),
                 const TextSpan(text: '  '),
                 TextSpan(
                   text:
-                      '${AppConstants.currencyNumberPercentFormat(currencyExchangeModel.rates![symbols]!.changePct)} Compared To The Last Price Yesterday',
+                      '${AppConstants.currencyNumberPercentFormat(currencyExchangeModel.rates![symbols]!.changePct)} Compared To The Last Price Week',
                   style: AppTextStyle.textStyle10.copyWith(
                     color: isNegativeNum ? AppColors.appRedColor : AppColors.appGreenColor,
                     fontWeight: FontWeight.w500,
+                    fontSize: 10.5,
                   ),
                 ),
               ],
