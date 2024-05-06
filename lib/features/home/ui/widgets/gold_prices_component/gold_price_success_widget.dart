@@ -1,9 +1,11 @@
 import 'package:currencypro/core/utils/app_images.dart';
 import 'package:currencypro/features/home/data/model/gold_price_models/gold_price_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:gap/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
+import '../../../../../core/utils/app_constants.dart';
 import '../../../data/model/widgets_model/currencies_list_item_model.dart';
 import '../currencies_list_item.dart';
 
@@ -118,7 +120,19 @@ class _GoldPriceSuccessWidgetState extends State<GoldPriceSuccessWidget> {
           itemCount: item.length,
           separatorBuilder: (BuildContext context, int index) => const Gap(10),
           itemBuilder: (context, index) {
-            return CurrenciesListItem(currenciesListItemModel: item[index]);
+            return AnimationConfiguration.staggeredList(
+              delay: const Duration(milliseconds: 100),
+              position: index,
+              child: SlideAnimation(
+                duration: const Duration(milliseconds: AppConstants.slideAnimation),
+                child: FadeInAnimation(
+                  duration: const Duration(milliseconds: AppConstants.fadInAnimation),
+                  child: CurrenciesListItem(
+                    currenciesListItemModel: item[index],
+                  ),
+                ),
+              ),
+            );
           },
         ),
         const SliverToBoxAdapter(child: Gap(20)),

@@ -11,6 +11,9 @@ import 'app_colors.dart';
 import 'app_strings.dart';
 
 class AppConstants {
+  static const int slideAnimation = 350;
+  static const int fadInAnimation = 350;
+
   static void showErrorDialog(
     BuildContext context, {
     required String message,

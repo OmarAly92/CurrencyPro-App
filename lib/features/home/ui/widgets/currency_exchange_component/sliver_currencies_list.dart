@@ -1,6 +1,7 @@
 import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:currencypro/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:gap/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -43,13 +44,23 @@ class _SliverCurrenciesListState extends State<SliverCurrenciesList> {
           itemCount: AppConstants.getCurrenciesCode().length - 1,
           separatorBuilder: (BuildContext context, int index) => const Gap(10),
           itemBuilder: (context, index) {
-            return CurrenciesListItem(
-              currenciesListItemModel: CurrenciesListItemModel(
-                currencyName: AppConstants.getCurrencyNameBySymbol(currenciesCode[index]),
-                buyPrice: (1 / widget.allCurrenciesModel.rates[currenciesCode[index]]!).toStringAsFixed(2),
-                widget: Image.asset(
-                  height: 35,
-                  AppImages.currencyImage,
+            return AnimationConfiguration.staggeredList(
+              delay: const Duration(milliseconds: 100),
+              position: index,
+              child: SlideAnimation(
+                duration: const Duration(milliseconds: AppConstants.slideAnimation),
+                child: FadeInAnimation(
+                  duration: const Duration(milliseconds: AppConstants.fadInAnimation),
+                  child: CurrenciesListItem(
+                    currenciesListItemModel: CurrenciesListItemModel(
+                      currencyName: AppConstants.getCurrencyNameBySymbol(currenciesCode[index]),
+                      buyPrice: (1 / widget.allCurrenciesModel.rates[currenciesCode[index]]!).toStringAsFixed(2),
+                      widget: Image.asset(
+                        height: 35,
+                        AppImages.currencyImage,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             );
