@@ -1,34 +1,34 @@
 import 'package:dio/dio.dart';
 
-class Failures {
-  Failures(this.code, this.message);
+class FailureHandler {
+  FailureHandler(this.code, this.message);
 
   int code;
   String message;
 }
 
 class ErrorHandler implements Exception {
-  late Failures failure;
+  late FailureHandler failureHandler;
 
   ErrorHandler.handle(dynamic error, {int? statusCode}) {
     if (error is DioException) {
-      failure = _handleError(error);
+      failureHandler = _handleError(error);
     } else if (statusCode != null && statusCode == 429) {
-      failure = DataSource.tooManyRequest.getFailure();
+      failureHandler = DataSource.tooManyRequest.getFailure();
     } else if (statusCode != null && statusCode == 400) {
-      failure = DataSource.badRequest.getFailure();
+      failureHandler = DataSource.badRequest.getFailure();
     } else if (statusCode != null && statusCode == 401) {
-      failure = DataSource.unauthorised.getFailure();
+      failureHandler = DataSource.unauthorised.getFailure();
     } else if (statusCode != null && statusCode == 404) {
-      failure = DataSource.notFound.getFailure();
+      failureHandler = DataSource.notFound.getFailure();
     } else if (statusCode != null && statusCode == 500) {
-      failure = DataSource.internalServerError.getFailure();
+      failureHandler = DataSource.internalServerError.getFailure();
     } else {
-      failure = DataSource.kDefault.getFailure();
+      failureHandler = DataSource.kDefault.getFailure();
     }
   }
 
-  Failures _handleError(DioException error) {
+  FailureHandler _handleError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
         return DataSource.connectionTimeout.getFailure();
@@ -40,7 +40,7 @@ class ErrorHandler implements Exception {
         if (error.response != null &&
             error.response?.statusCode != null &&
             error.response?.statusMessage != null) {
-          return Failures(error.response?.statusCode ?? 0, error.response?.data['message'] ?? '');
+          return FailureHandler(error.response?.statusCode ?? 0, error.response?.data['message'] ?? '');
         } else {
           return DataSource.kDefault.getFailure();
         }
@@ -71,38 +71,38 @@ enum DataSource {
 }
 
 extension DataSourceExtension on DataSource {
-  Failures getFailure() {
+  FailureHandler getFailure() {
     switch (this) {
       case DataSource.noContent:
-        return Failures(ResponseCode.noContent, ResponseMessage.noContent);
+        return FailureHandler(ResponseCode.noContent, ResponseMessage.noContent);
       case DataSource.badRequest:
-        return Failures(ResponseCode.badRequest, ResponseMessage.badRequest);
+        return FailureHandler(ResponseCode.badRequest, ResponseMessage.badRequest);
       case DataSource.forbidden:
-        return Failures(ResponseCode.forbidden, ResponseMessage.forbidden);
+        return FailureHandler(ResponseCode.forbidden, ResponseMessage.forbidden);
       case DataSource.unauthorised:
-        return Failures(ResponseCode.unauthorised, ResponseMessage.unauthorised);
+        return FailureHandler(ResponseCode.unauthorised, ResponseMessage.unauthorised);
       case DataSource.notFound:
-        return Failures(ResponseCode.notFound, ResponseMessage.notFound);
+        return FailureHandler(ResponseCode.notFound, ResponseMessage.notFound);
       case DataSource.internalServerError:
-        return Failures(ResponseCode.internalServerError, ResponseMessage.internalServerError);
+        return FailureHandler(ResponseCode.internalServerError, ResponseMessage.internalServerError);
       case DataSource.connectionTimeout:
-        return Failures(ResponseCode.connectionTimeout, ResponseMessage.connectionTimeout);
+        return FailureHandler(ResponseCode.connectionTimeout, ResponseMessage.connectionTimeout);
       case DataSource.cancel:
-        return Failures(ResponseCode.cancel, ResponseMessage.cancel);
+        return FailureHandler(ResponseCode.cancel, ResponseMessage.cancel);
       case DataSource.receiveTimeout:
-        return Failures(ResponseCode.receiveTimeout, ResponseMessage.receiveTimeout);
+        return FailureHandler(ResponseCode.receiveTimeout, ResponseMessage.receiveTimeout);
       case DataSource.sendTimeout:
-        return Failures(ResponseCode.sendTimeout, ResponseMessage.sendTimeout);
+        return FailureHandler(ResponseCode.sendTimeout, ResponseMessage.sendTimeout);
       case DataSource.cacheError:
-        return Failures(ResponseCode.cacheError, ResponseMessage.cacheError);
+        return FailureHandler(ResponseCode.cacheError, ResponseMessage.cacheError);
       case DataSource.noInternetConnection:
-        return Failures(ResponseCode.noInternetConnection, ResponseMessage.noInternetConnection);
+        return FailureHandler(ResponseCode.noInternetConnection, ResponseMessage.noInternetConnection);
       case DataSource.tooManyRequest:
-        return Failures(ResponseCode.tooManyRequest, ResponseMessage.tooManyRequest);
+        return FailureHandler(ResponseCode.tooManyRequest, ResponseMessage.tooManyRequest);
       case DataSource.success:
-        return Failures(ResponseCode.success, ResponseMessage.success);
+        return FailureHandler(ResponseCode.success, ResponseMessage.success);
       case DataSource.kDefault:
-        return Failures(ResponseCode.kDefault, ResponseMessage.kDefault);
+        return FailureHandler(ResponseCode.kDefault, ResponseMessage.kDefault);
     }
   }
 }

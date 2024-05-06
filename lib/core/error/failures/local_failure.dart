@@ -1,4 +1,4 @@
-import 'failures.dart';
+import 'failure.dart';
 
 class LocalFailure extends Failure {
   LocalFailure([this.message]);

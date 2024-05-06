@@ -36,7 +36,7 @@ class GoldPriceRepositoryImp implements GoldPriceRepository {
       }
     } catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failure);
+      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
     }
   }
 }

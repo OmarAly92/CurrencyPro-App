@@ -47,7 +47,7 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
       }
     } catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failure);
+      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
     }
   }
 
@@ -68,7 +68,7 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
       }
     } catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failure);
+      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
     }
   }
 
@@ -88,7 +88,7 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
       }
     } catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failure);
+      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
     }
   }
 }

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
-import '../error/failures/failures.dart';
+import '../error/failures/failure.dart';
 import '../error/failures/local_failure.dart';
 import '../error/failures/server_failure.dart';
 import 'app_colors.dart';

@@ -1,4 +1,4 @@
-import 'failures.dart';
+import 'failure.dart';
 
 class ServerFailure implements Failure {
   const ServerFailure([this.message]);
