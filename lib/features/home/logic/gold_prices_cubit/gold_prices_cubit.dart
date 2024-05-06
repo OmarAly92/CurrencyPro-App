@@ -4,25 +4,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/model/gold_price_models/gold_price_model.dart';
 import '../../data/model/gold_price_models/gold_price_request_parameters.dart';
-import '../../data/repository/gold_price_repository.dart';
+import '../../data/repository/gold_prices_repository.dart';
 
-part 'gold_price_state.dart';
+part 'gold_prices_state.dart';
 
-class GoldPriceCubit extends Cubit<GoldPriceState> {
-  GoldPriceCubit(this._goldPriceRepository) : super(GoldPriceInitial());
-  final GoldPriceRepository _goldPriceRepository;
+class GoldPricesCubit extends Cubit<GoldPricesState> {
+  GoldPricesCubit(this._goldPriceRepository) : super(GoldPricesInitial());
+  final GoldPricesRepository _goldPriceRepository;
 
   Future<void> getGoldPrice({String? metal}) async {
-    emit(GetGoldPriceLoading());
+    emit(GetGoldPricesLoading());
     final result = await _goldPriceRepository.getGoldPrice(
-        parameters: GoldPriceRequestParameters(
+        parameters: GoldPricesRequestParameters(
       metal: metal,
       countryCode: symbols,
     ));
     if (result.isSuccess) {
-      emit(GetGoldPriceSuccess(goldPrice: result.value!));
+      emit(GetGoldPricesSuccess(goldPrice: result.value!));
     } else {
-      emit(GetGoldPriceFailure(failureMessage: result.error.message));
+      emit(GetGoldPricesFailure(failureMessage: result.error.message));
     }
   }
 }

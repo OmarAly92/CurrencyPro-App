@@ -11,7 +11,7 @@ import '../model/currency_exchange_models/all_currencies_model.dart';
 import '../model/currency_exchange_models/currency_conversion_model.dart';
 import '../model/currency_exchange_models/fluctuation_currencies_model.dart';
 import '../model/widgets_model/convert_currency_parameter_model.dart';
-import '../model/widgets_model/currency_exchange_parameters_model.dart';
+import '../model/currency_exchange_models/currency_exchange_parameters_model.dart';
 
 abstract class CurrencyExchangeRepository {
   Future<Result<FluctuationCurrenciesModel>> getFluctuationCurrencies({

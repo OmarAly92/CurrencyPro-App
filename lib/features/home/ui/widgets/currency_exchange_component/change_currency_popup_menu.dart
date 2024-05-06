@@ -1,7 +1,7 @@
 import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:currencypro/core/utils/app_shared_pref.dart';
 import 'package:currencypro/features/home/logic/currency_exchange_cubit/currency_exchange_cubit.dart';
-import 'package:currencypro/features/home/logic/gold_price_cubit/gold_price_cubit.dart';
+import 'package:currencypro/features/home/logic/gold_prices_cubit/gold_prices_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +32,7 @@ class _ChangeCurrencyPopupMenuState extends State<ChangeCurrencyPopupMenu> {
         AppSharedPref.setString(AppSharedKeys.symbol, value);
         symbols = value;
         currencyExchangeCubit.getCurrencyExchange();
-        context.read<GoldPriceCubit>().getGoldPrice();
+        context.read<GoldPricesCubit>().getGoldPrice();
         setState(() {});
       },
       itemBuilder: (context) {

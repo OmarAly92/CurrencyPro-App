@@ -15,7 +15,7 @@ class GoldPriceSuccessWidget extends StatefulWidget {
     required this.goldPriceModel,
   });
 
-  final GoldPriceModel goldPriceModel;
+  final GoldPricesModel goldPriceModel;
 
   @override
   State<GoldPriceSuccessWidget> createState() => _GoldPriceSuccessWidgetState();

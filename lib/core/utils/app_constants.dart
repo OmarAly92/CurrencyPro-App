@@ -95,8 +95,6 @@ class AppConstants {
         return 'Egyptian Pound';
       case 'USD':
         return 'US Dollar';
-      case 'EUR':
-        return 'Euro';
       case 'GBP':
         return 'British Pound';
       case 'JPY':
@@ -105,6 +103,8 @@ class AppConstants {
         return 'Swiss Franc';
       case 'KWD':
         return 'Kuwaiti Dinar';
+      case 'EUR':
+        return 'Euro';
       case 'SAR':
         return 'Saudi Riyal';
       case 'AED':
@@ -138,13 +138,13 @@ class AppConstants {
     return [
       'EGP',
       'USD',
-      'EUR',
       'GBP',
       'JPY',
       'CHF',
       'KWD',
       'SAR',
       'AED',
+      'EUR',
       'QAR',
       'SGD',
       'OMR',

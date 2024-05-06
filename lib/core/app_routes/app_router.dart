@@ -1,4 +1,4 @@
-import 'package:currencypro/features/home/logic/gold_price_cubit/gold_price_cubit.dart';
+import 'package:currencypro/features/home/logic/gold_prices_cubit/gold_prices_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +20,7 @@ class AppRouter {
                   create: (context) => CurrencyExchangeCubit(sl())..getCurrencyExchange(),
                 ),
                 BlocProvider(
-                  create: (context) => GoldPriceCubit(sl())..getGoldPrice(),
+                  create: (context) => GoldPricesCubit(sl())..getGoldPrice(),
                 ),
               ],
               child: const HomeView(),

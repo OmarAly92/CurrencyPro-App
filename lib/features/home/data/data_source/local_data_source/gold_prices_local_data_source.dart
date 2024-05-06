@@ -7,9 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/utils/app_strings.dart';
 
 abstract class GoldPricesLocalDataSource {
-  Future<dynamic> getGoldPrice();
+  Future<dynamic> getGoldPrices();
 
-  Future<void> cacheGoldPrice(GoldPriceModel goldPriceModel);
+  Future<void> cacheGoldPrices(GoldPricesModel goldPriceModel);
 }
 
 class GoldPricesLocalDataSourceImp implements GoldPricesLocalDataSource {
@@ -18,10 +18,10 @@ class GoldPricesLocalDataSourceImp implements GoldPricesLocalDataSource {
   final SharedPreferences sharedPreferences;
 
   @override
-  Future<dynamic> getGoldPrice() async {
+  Future<dynamic> getGoldPrices() async {
     final jsonQuote = sharedPreferences.getString(AppStrings.cachedGoldPrices);
     if (jsonQuote != null) {
-      final localCacheRandomQuote = GoldPriceModel.fromJson(jsonDecode(jsonQuote));
+      final localCacheRandomQuote = GoldPricesModel.fromJson(jsonDecode(jsonQuote));
       return localCacheRandomQuote;
     } else {
       throw LocalFailure();
@@ -29,7 +29,7 @@ class GoldPricesLocalDataSourceImp implements GoldPricesLocalDataSource {
   }
 
   @override
-  Future<void> cacheGoldPrice(GoldPriceModel goldPriceModel) {
+  Future<void> cacheGoldPrices(GoldPricesModel goldPriceModel) {
     final Map<String, dynamic> goldPriceMap = goldPriceModel.toJson();
     final String jsonQuote = jsonEncode(goldPriceMap);
     return sharedPreferences.setString(AppStrings.cachedGoldPrices, jsonQuote);

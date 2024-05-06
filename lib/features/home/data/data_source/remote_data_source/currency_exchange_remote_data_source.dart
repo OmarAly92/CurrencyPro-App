@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import '../../../../../core/api/dio_consumer.dart';
 import '../../../../../core/api/end_points.dart';
 import '../../model/widgets_model/convert_currency_parameter_model.dart';
-import '../../model/widgets_model/currency_exchange_parameters_model.dart';
+import '../../model/currency_exchange_models/currency_exchange_parameters_model.dart';
 
 abstract class CurrencyExchangeRemoteDataSource {
   Future<Response<dynamic>> getFluctuationCurrencies({

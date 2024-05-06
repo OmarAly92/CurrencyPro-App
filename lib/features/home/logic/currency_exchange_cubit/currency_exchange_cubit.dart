@@ -8,7 +8,7 @@ import '../../data/model/currency_exchange_models/all_currencies_model.dart';
 import '../../data/model/currency_exchange_models/currency_conversion_model.dart';
 import '../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
 import '../../data/model/widgets_model/convert_currency_parameter_model.dart';
-import '../../data/model/widgets_model/currency_exchange_parameters_model.dart';
+import '../../data/model/currency_exchange_models/currency_exchange_parameters_model.dart';
 import '../../data/repository/currency_exchange_repository.dart';
 
 part 'currency_exchange_state.dart';

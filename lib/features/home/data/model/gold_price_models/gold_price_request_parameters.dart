@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-class GoldPriceRequestParameters extends Equatable {
+class GoldPricesRequestParameters extends Equatable {
   final String? metal;
   final String? countryCode;
 
-  const GoldPriceRequestParameters({
+  const GoldPricesRequestParameters({
     this.metal,
     this.countryCode,
   });

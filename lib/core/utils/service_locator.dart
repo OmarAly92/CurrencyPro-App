@@ -1,5 +1,5 @@
 import 'package:currencypro/features/home/data/data_source/local_data_source/currency_exchange_local_data_source.dart';
-import 'package:currencypro/features/home/data/data_source/local_data_source/gold_price_local_data_source.dart';
+import 'package:currencypro/features/home/data/data_source/local_data_source/gold_prices_local_data_source.dart';
 import 'package:currencypro/features/home/data/repository/currency_exchange_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/home/data/data_source/remote_data_source/currency_exchange_remote_data_source.dart';
 import '../../features/home/data/data_source/remote_data_source/gold_prices_remote_data_source.dart';
-import '../../features/home/data/repository/gold_price_repository.dart';
+import '../../features/home/data/repository/gold_prices_repository.dart';
 import '../../features/home/logic/currency_exchange_cubit/currency_exchange_cubit.dart';
 import '../api/app_interceptors.dart';
 import '../api/dio_consumer.dart';
@@ -26,11 +26,11 @@ class ServiceLocator {
     // Repository
     sl.registerLazySingleton<CurrencyExchangeRepository>(
         () => CurrencyExchangeRepositoryImp(sl(), sl(), sl(), sl()));
-    sl.registerLazySingleton<GoldPriceRepository>(() => GoldPriceRepositoryImp(sl(), sl(), sl(), sl()));
+    sl.registerLazySingleton<GoldPricesRepository>(() => GoldPricesRepositoryImp(sl(), sl(), sl(), sl()));
 
     // Data Sources
     sl.registerLazySingleton<CurrencyExchangeRemoteDataSource>(() => CurrencyExchangeRemoteDataSourceImp(sl()));
-    sl.registerLazySingleton<GoldPricesRemoteDataSource>(() => GoldPriceRemoteDataSourceImp(sl()));
+    sl.registerLazySingleton<GoldPricesRemoteDataSource>(() => GoldPricesRemoteDataSourceImp(sl()));
     sl.registerLazySingleton<CurrencyExchangeLocalDataSource>(() => CurrencyExchangeLocalDataSourceImp(sl()));
     sl.registerLazySingleton<GoldPricesLocalDataSource>(() => GoldPricesLocalDataSourceImp(sl()));
 

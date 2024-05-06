@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class GoldPriceModel extends Equatable {
+class GoldPricesModel extends Equatable {
   final int timestamp;
   final String metal;
   final String currency;
@@ -16,7 +16,7 @@ class GoldPriceModel extends Equatable {
   final double priceGram14k;
   final double priceGram10k;
 
-  const GoldPriceModel({
+  const GoldPricesModel({
     required this.timestamp,
     required this.metal,
     required this.currency,
@@ -51,8 +51,8 @@ class GoldPriceModel extends Equatable {
         priceGram10k,
       ];
 
-  factory GoldPriceModel.fromJson(Map<String, dynamic> json) {
-    return GoldPriceModel(
+  factory GoldPricesModel.fromJson(Map<String, dynamic> json) {
+    return GoldPricesModel(
       timestamp: json['timestamp'] ?? 0,
       metal: json['metal'] ?? '',
       currency: json['currency'] ?? '',
