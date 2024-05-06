@@ -31,7 +31,6 @@ class _ChangeCurrencyPopupMenuState extends State<ChangeCurrencyPopupMenu> {
         final currencyExchangeCubit = context.read<CurrencyExchangeCubit>();
         AppSharedPref.setString(AppSharedKeys.symbol, value);
         symbols = value;
-        allCurrenciesBase = value;
         currencyExchangeCubit.getCurrencyExchange();
         context.read<GoldPriceCubit>().getGoldPrice();
         setState(() {});
@@ -41,9 +40,7 @@ class _ChangeCurrencyPopupMenuState extends State<ChangeCurrencyPopupMenu> {
           return PopupMenuItem<String>(
             value: item,
             child: Center(
-              child: Text(
-                item,
-              ),
+              child: Text(item),
             ),
           );
         }).toList();

@@ -17,12 +17,10 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
   CurrencyExchangeCubit(this._currencyExchangeRepository) : super(CurrencyExchangeInitial());
 
   final CurrencyExchangeRepository _currencyExchangeRepository;
-
-  var dateTimeNow = DateTime.now();
-  var dateTimeYesterday = DateTime.now().subtract(const Duration(days: 7));
+  final _dateTimeNow = DateTime.now();
+  final _dateTimeYesterday = DateTime.now().subtract(const Duration(days: 7));
 
   Future<void> getCurrencyExchange() async {
-    emit(CurrencyExchangeInitial());
     emit(GetCurrencyExchangeLoading());
     final fluctuationCurrencies = await _getFluctuationCurrencies();
     final allCurrencies = await _getAllCurrencies();
@@ -51,8 +49,8 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
         parameters: CurrencyExchangeParametersModel(
       symbols: fluctuationBase == symbols ? 'EUR' : symbols,
       base: fluctuationBase,
-      startDate: AppConstants.dateFormat(dateTimeYesterday),
-      endDate: AppConstants.dateFormat(dateTimeNow),
+      startDate: AppConstants.dateFormat(_dateTimeYesterday),
+      endDate: AppConstants.dateFormat(_dateTimeNow),
     ));
     return result;
   }
@@ -60,7 +58,7 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
   Future<Result<AllCurrenciesModel>> _getAllCurrencies() async {
     final result = await _currencyExchangeRepository.getAllCurrencies(
         parameters: CurrencyExchangeParametersModel(
-      base: allCurrenciesBase,
+      base: symbols,
     ));
     return result;
   }

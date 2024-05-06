@@ -36,7 +36,8 @@ class FluctuationInfoText extends StatelessWidget {
                 const TextSpan(text: 'Buying price'),
                 const TextSpan(text: ' '),
                 TextSpan(
-                  text: currencyExchangeModel.rates![symbols]!.endRate.toStringAsFixed(2),
+                  text: currencyExchangeModel.rates![fluctuationBase == symbols ? 'EUR' : symbols]!.endRate
+                      .toStringAsFixed(2),
                   style: AppTextStyle.textStyle10.copyWith(
                     color: AppColors.appBlueColor,
                     fontWeight: FontWeight.w600,
@@ -46,7 +47,7 @@ class FluctuationInfoText extends StatelessWidget {
                 const TextSpan(text: '  '),
                 TextSpan(
                   text:
-                      '${AppConstants.currencyNumberPercentFormat(currencyExchangeModel.rates![symbols]!.changePct)} Compared To The Last Price Week',
+                      '${AppConstants.currencyNumberPercentFormat(currencyExchangeModel.rates![fluctuationBase == symbols ? 'EUR' : symbols]!.changePct)} Compared To The Last Week Price',
                   style: AppTextStyle.textStyle10.copyWith(
                     color: isNegativeNum ? AppColors.appRedColor : AppColors.appGreenColor,
                     fontWeight: FontWeight.w500,
