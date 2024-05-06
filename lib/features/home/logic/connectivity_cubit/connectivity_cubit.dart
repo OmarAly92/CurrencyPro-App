@@ -1,10 +1,7 @@
 import 'dart:async';
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-
-part 'connectivity_state.dart';
 
 class ConnectivityCubit extends Cubit<bool> {
   ConnectivityCubit(this._internetConnection) : super(true);

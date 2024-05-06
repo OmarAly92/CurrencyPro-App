@@ -5,8 +5,8 @@ import 'package:currencypro/features/home/logic/gold_price_cubit/gold_price_cubi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/utils/app_colors.dart';
-import '../../../core/utils/global.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/global.dart';
 
 class ChangeCurrencyPopupMenu extends StatefulWidget {
   const ChangeCurrencyPopupMenu({

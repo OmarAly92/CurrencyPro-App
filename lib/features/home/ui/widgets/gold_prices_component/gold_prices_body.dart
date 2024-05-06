@@ -6,16 +6,16 @@ import 'package:currencypro/features/home/ui/widgets/gold_prices_component/gold_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class GoldPricesView extends StatefulWidget {
-  const GoldPricesView({
+class GoldPricesBody extends StatefulWidget {
+  const GoldPricesBody({
     super.key,
   });
 
   @override
-  State<GoldPricesView> createState() => _GoldPricesViewState();
+  State<GoldPricesBody> createState() => _GoldPricesBodyState();
 }
 
-class _GoldPricesViewState extends State<GoldPricesView> {
+class _GoldPricesBodyState extends State<GoldPricesBody> {
   Future<void> refreshState() async {
     context.read<GoldPriceCubit>().getGoldPrice();
   }

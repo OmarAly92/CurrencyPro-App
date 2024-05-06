@@ -1,12 +1,12 @@
 import 'package:currencypro/features/home/logic/connectivity_cubit/connectivity_cubit.dart';
-import 'package:currencypro/features/home/ui/change_currency_popup_menu.dart';
-import 'package:currencypro/features/home/ui/connectivity_status_widget.dart';
+import 'package:currencypro/features/home/ui/widgets/currency_exchange_component/connectivity_status_widget.dart';
 import 'package:currencypro/features/home/ui/currency_exchange_view.dart';
-import 'package:currencypro/features/home/ui/widgets/gold_prices_component/gold_prices_view.dart';
+import 'package:currencypro/features/home/ui/gold_prices_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/app_text_style.dart';
+import 'widgets/currency_exchange_component/change_currency_popup_menu.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
