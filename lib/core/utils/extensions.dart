@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 extension MediaQueryValues on BuildContext {
   double get height => MediaQuery.sizeOf(this).height;
@@ -28,4 +29,19 @@ extension Navigation on BuildContext {
   }
 
   void pop() => Navigator.pop(this);
+}
+
+extension ShowSnakbarExtension on BuildContext {
+  void showSnackBar(String text, {Color? snackColor, Color? textColor}) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        backgroundColor: snackColor,
+        content: Text(
+          text,
+          style: TextStyle(color: textColor ?? Colors.white),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
 }

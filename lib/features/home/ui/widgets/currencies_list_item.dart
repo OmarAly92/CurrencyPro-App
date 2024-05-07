@@ -2,7 +2,7 @@ import 'package:currencypro/core/utils/app_colors.dart';
 import 'package:currencypro/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/model/currencies_list_item_model.dart';
+import '../../data/model/widgets_model/currencies_list_item_model.dart';
 
 class CurrenciesListItem extends StatelessWidget {
   const CurrenciesListItem({
@@ -28,20 +28,7 @@ class CurrenciesListItem extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: AppColors.secondaryColor,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              border: Border.all(
-                color: AppColors.appBlueColor,
-              ),
-            ),
-            child: Center(
-              child: currenciesListItemModel.widget,
-            ),
-          ),
-        ),
+        leading: currenciesListItemModel.widget,
         title: Text(
           currenciesListItemModel.currencyName,
           style: AppTextStyle.textStyle13,
@@ -52,25 +39,12 @@ class CurrenciesListItem extends StatelessWidget {
             style: AppTextStyle.textStyle13,
             children: [
               const TextSpan(
-                text: 'Buy',
-                style: AppTextStyle.textStyle11,
+                text: 'Price',
+                style: AppTextStyle.textStyle13,
               ),
               const TextSpan(text: ' '),
               TextSpan(
                 text: currenciesListItemModel.buyPrice,
-                style: AppTextStyle.textStyle13.copyWith(
-                  color: AppColors.appBlueColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const TextSpan(text: '    '),
-              const TextSpan(
-                text: 'Sell',
-                style: AppTextStyle.textStyle11,
-              ),
-              const TextSpan(text: ' '),
-              TextSpan(
-                text: currenciesListItemModel.sellPrice,
                 style: AppTextStyle.textStyle13.copyWith(
                   color: AppColors.appBlueColor,
                   fontWeight: FontWeight.w500,

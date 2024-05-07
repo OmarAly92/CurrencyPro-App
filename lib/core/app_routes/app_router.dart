@@ -1,9 +1,11 @@
+import 'package:currencypro/features/home/logic/gold_prices_cubit/gold_prices_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../features/home/logic/currency_exchange_cubit.dart';
+import '../../features/home/logic/currency_exchange_cubit/currency_exchange_cubit.dart';
 import '../../features/home/ui/home_view.dart';
 import '../utils/app_strings.dart';
+import '../utils/service_locator.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -12,8 +14,15 @@ class AppRouter {
       case Routes.homeScreen:
         return MaterialPageRoute(
           builder: (context) {
-            return BlocProvider(
-              create: (context) => CurrencyExchangeCubit(),
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => CurrencyExchangeCubit(sl())..getCurrencyExchange(),
+                ),
+                BlocProvider(
+                  create: (context) => GoldPricesCubit(sl())..getGoldPrice(),
+                ),
+              ],
               child: const HomeView(),
             );
           },

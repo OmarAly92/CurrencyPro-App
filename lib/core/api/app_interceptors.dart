@@ -1,12 +1,39 @@
+import 'package:currencypro/core/api/status_code.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import '../utils/app_strings.dart';
+import 'end_points.dart';
 
-class AppInterceptors extends Interceptor {
+class AppInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers[AppStrings.contentType] = AppStrings.applicationJson;
+    if (EndPoints.currenciesExchangeEndPoints.contains(options.path)) {
+      options
+        ..baseUrl = EndPoints.exchangeBaseUrl
+        ..headers[AppStrings.contentType] = AppStrings.applicationJson
+        ..responseType = ResponseType.plain
+        ..followRedirects = false
+        ..headers = {
+          EndPoints.headerKeyCurrencies: EndPoints.apikeyValueCurrencies,
+        }
+        ..validateStatus = (status) {
+          return status! < StatusCode.internalServerError;
+        };
+    } else {
+      options
+        ..baseUrl = EndPoints.goldPriceBaseUrl
+        ..headers[AppStrings.contentType] = AppStrings.applicationJson
+        ..responseType = ResponseType.plain
+        ..followRedirects = false
+        ..headers = {
+          EndPoints.headerKeyGoldPrice: EndPoints.apikeyValueGoldPrice,
+        }
+        ..validateStatus = (status) {
+          return status! < StatusCode.internalServerError;
+        };
+    }
+
     debugPrint('REQUEST[${options.method}] => PATH: ${options.path}');
     super.onRequest(options, handler);
   }

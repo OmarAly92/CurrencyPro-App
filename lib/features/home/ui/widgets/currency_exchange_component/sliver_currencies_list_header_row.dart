@@ -8,12 +8,10 @@ class SliverCurrenciesListHeaderRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Text(
-        'Currencies',
-        style: AppTextStyle.textStyle19.copyWith(
-          fontWeight: FontWeight.w600,
-        ),
+    return Text(
+      'Currencies',
+      style: AppTextStyle.textStyle19.copyWith(
+        fontWeight: FontWeight.w600,
       ),
     );
   }
