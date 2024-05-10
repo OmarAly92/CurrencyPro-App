@@ -12,7 +12,7 @@ Currency Pro is your go-to companion for real-time currency and gold price track
 - Responsive UI
 
 
-## Images of the Project:
+## Here some pictures of the project:
 
 <img src = "https://github.com/OmarAly92/CurrencyPro-App/assets/114154073/63769eea-a97b-499f-ba97-b31374f4f730" height ="500">
 <img src = "https://github.com/OmarAly92/CurrencyPro-App/assets/114154073/b1622f69-5c6c-4201-9c8b-854733c8b350" height ="500">
