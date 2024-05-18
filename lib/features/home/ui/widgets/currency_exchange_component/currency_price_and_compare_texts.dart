@@ -3,7 +3,7 @@ import 'package:currencypro/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/global.dart';
-import '../../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
+import '../../../data/model/currency_exchange_models/remote/fluctuation_currencies_model.dart';
 import 'fluctuation_info_text.dart';
 
 class CurrencyPriceAndCompareTexts extends StatelessWidget {
@@ -27,7 +27,7 @@ class CurrencyPriceAndCompareTexts extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                    text: currencyExchangeModel.rates![fluctuationBase == symbols ? 'EUR' : symbols]!.endRate
+                    text: currencyExchangeModel.rates.rates.endRate
                         .toStringAsFixed(2)),
                 TextSpan(
                   text: symbols,

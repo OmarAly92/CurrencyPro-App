@@ -17,7 +17,6 @@ class DioConsumer implements ApiConsumer {
       return client;
     };
     client.interceptors.add(sl<AppInterceptor>());
-
     // if (kDebugMode) {
     //   client.interceptors.add(sl<LogInterceptor>());
     // }

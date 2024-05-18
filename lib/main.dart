@@ -14,7 +14,6 @@ void main() async {
   await ServiceLocator.inIt();
   await AppSharedPref.init();
   Bloc.observer = AppBlocObserver();
-
   runApp(const MyApp());
 }
 

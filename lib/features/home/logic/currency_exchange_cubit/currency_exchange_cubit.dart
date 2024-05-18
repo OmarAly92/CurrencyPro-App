@@ -4,17 +4,18 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/global.dart';
-import '../../data/model/currency_exchange_models/all_currencies_model.dart';
-import '../../data/model/currency_exchange_models/currency_conversion_model.dart';
-import '../../data/model/currency_exchange_models/fluctuation_currencies_model.dart';
+import '../../data/model/currency_exchange_models/remote/all_currencies_model.dart';
+import '../../data/model/currency_exchange_models/remote/currency_conversion_model.dart';
+import '../../data/model/currency_exchange_models/remote/fluctuation_currencies_model.dart';
 import '../../data/model/widgets_model/convert_currency_parameter_model.dart';
-import '../../data/model/currency_exchange_models/currency_exchange_parameters_model.dart';
+import '../../data/model/currency_exchange_parameters_model.dart';
 import '../../data/repository/currency_exchange_repository.dart';
 
 part 'currency_exchange_state.dart';
 
 class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
-  CurrencyExchangeCubit(this._currencyExchangeRepository) : super(CurrencyExchangeInitial());
+  CurrencyExchangeCubit(this._currencyExchangeRepository)
+      : super(CurrencyExchangeInitial());
 
   final CurrencyExchangeRepository _currencyExchangeRepository;
   final _dateTimeNow = DateTime.now();
@@ -30,13 +31,16 @@ class CurrencyExchangeCubit extends Cubit<CurrencyExchangeState> {
         allCurrencies: allCurrencies.value!,
       ));
     } else {
-      emit(GetCurrencyExchangeFailure(failureMessage: fluctuationCurrencies.error.message));
+      emit(GetCurrencyExchangeFailure(
+          failureMessage: fluctuationCurrencies.error.message));
     }
   }
 
-  Future<void> getConvertCurrency({required ConvertCurrencyParameterModel parameters}) async {
+  Future<void> getConvertCurrency(
+      {required ConvertCurrencyParameterModel parameters}) async {
     emit(GetConvertCurrencyLoading());
-    final result = await _currencyExchangeRepository.getConvertCurrency(parameters: parameters);
+    final result = await _currencyExchangeRepository.getConvertCurrency(
+        parameters: parameters);
     if (result.isSuccess) {
       emit(GetConvertCurrencySuccess(currencyConversion: result.value!));
     } else {

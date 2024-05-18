@@ -6,7 +6,7 @@ class FluctuationCurrenciesModel extends Equatable {
   final String? startDate;
   final String? endDate;
   final String base;
-  final Map<String, CurrencyRates>? rates;
+  final CurrencyRateEntry rates;
 
   const FluctuationCurrenciesModel({
     required this.success,
@@ -14,20 +14,22 @@ class FluctuationCurrenciesModel extends Equatable {
     this.startDate,
     this.endDate,
     required this.base,
-    this.rates,
+    required this.rates,
   });
 
   factory FluctuationCurrenciesModel.fromJson(Map<String, dynamic> json) {
+    var rates = CurrencyRateEntry(
+      currency: json['rates'].keys.first,
+      rates: CurrencyRates.fromJson(json['rates'].values.first),
+    );
+
     return FluctuationCurrenciesModel(
       success: json['success'] ?? false,
       fluctuation: json['fluctuation'] ?? false,
       startDate: json['start_date'],
       endDate: json['end_date'],
       base: json['base'] ?? '',
-      rates: json['rates'] != null
-          ? (json['rates'] as Map<String, dynamic>)
-              .map((key, value) => MapEntry(key, CurrencyRates.fromJson(value)))
-          : null,
+      rates: rates,
     );
   }
 
@@ -38,12 +40,26 @@ class FluctuationCurrenciesModel extends Equatable {
       'start_date': startDate,
       'end_date': endDate,
       'base': base,
-      'rates': rates?.map((key, value) => MapEntry(key, value.toJson())),
+      'rates': {rates.currency: rates.rates.toJson()},
     };
   }
 
   @override
-  List<Object?> get props => [success, fluctuation, startDate, endDate, base, rates];
+  List<Object?> get props =>
+      [success, fluctuation, startDate, endDate, base, rates];
+}
+
+class CurrencyRateEntry extends Equatable {
+  final String currency;
+  final CurrencyRates rates;
+
+  const CurrencyRateEntry({
+    required this.currency,
+    required this.rates,
+  });
+
+  @override
+  List<Object> get props => [currency, rates];
 }
 
 class CurrencyRates extends Equatable {

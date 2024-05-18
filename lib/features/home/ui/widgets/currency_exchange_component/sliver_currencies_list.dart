@@ -1,12 +1,12 @@
 import 'package:currencypro/core/utils/app_constants.dart';
 import 'package:currencypro/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:gap/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../../../core/utils/global.dart';
-import '../../../data/model/currency_exchange_models/all_currencies_model.dart';
+import '../../../../../core/widgets/app_list_animation.dart';
+import '../../../data/model/currency_exchange_models/remote/all_currencies_model.dart';
 import '../../../data/model/widgets_model/currencies_list_item_model.dart';
 import '../currencies_list_item.dart';
 import 'sliver_currencies_list_header_row.dart';
@@ -41,25 +41,20 @@ class _SliverCurrenciesListState extends State<SliverCurrenciesList> {
         const SliverCurrenciesListHeaderRow(),
         const SliverToBoxAdapter(child: Gap(12)),
         SliverList.separated(
-          itemCount: AppConstants.getCurrenciesCode().length - 1,
+          itemCount: widget.allCurrenciesModel.rates.length,
           separatorBuilder: (BuildContext context, int index) => const Gap(10),
           itemBuilder: (context, index) {
-            return AnimationConfiguration.staggeredList(
-              delay: const Duration(milliseconds: 100),
+            final item = widget.allCurrenciesModel.rates[index];
+            return AppListAnimation(
+              enable: index < 5,
               position: index,
-              child: SlideAnimation(
-                duration: const Duration(milliseconds: AppConstants.slideAnimation),
-                child: FadeInAnimation(
-                  duration: const Duration(milliseconds: AppConstants.fadInAnimation),
-                  child: CurrenciesListItem(
-                    currenciesListItemModel: CurrenciesListItemModel(
-                      currencyName: AppConstants.getCurrencyNameBySymbol(currenciesCode[index]),
-                      buyPrice: (1 / widget.allCurrenciesModel.rates[currenciesCode[index]]!).toStringAsFixed(2),
-                      widget: Image.asset(
-                        height: 35,
-                        AppImages.currencyImage,
-                      ),
-                    ),
+              child: CurrenciesListItem(
+                currenciesListItemModel: CurrenciesListItemModel(
+                  currencyName: item.currency,
+                  buyPrice: (1 / item.rate).toStringAsFixed(2),
+                  widget: Image.asset(
+                    height: 35,
+                    AppImages.currencyImage,
                   ),
                 ),
               ),

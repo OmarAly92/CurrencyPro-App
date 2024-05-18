@@ -7,11 +7,11 @@ import '../../../../core/error/error_handler.dart';
 import '../../../../core/network/network_status.dart';
 import '../data_source/local_data_source/currency_exchange_local_data_source.dart';
 import '../data_source/remote_data_source/currency_exchange_remote_data_source.dart';
-import '../model/currency_exchange_models/all_currencies_model.dart';
-import '../model/currency_exchange_models/currency_conversion_model.dart';
-import '../model/currency_exchange_models/fluctuation_currencies_model.dart';
+import '../model/currency_exchange_models/remote/all_currencies_model.dart';
+import '../model/currency_exchange_models/remote/currency_conversion_model.dart';
+import '../model/currency_exchange_models/remote/fluctuation_currencies_model.dart';
 import '../model/widgets_model/convert_currency_parameter_model.dart';
-import '../model/currency_exchange_models/currency_exchange_parameters_model.dart';
+import '../model/currency_exchange_parameters_model.dart';
 
 abstract class CurrencyExchangeRepository {
   Future<Result<FluctuationCurrenciesModel>> getFluctuationCurrencies({
@@ -46,7 +46,8 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
   }) async {
     final isConnected = await _networkStatus.isConnected;
     if (isConnected) {
-      final result = await _executeFluctuationRemoteConnection(parameters: parameters);
+      final result =
+          await _executeFluctuationRemoteConnection(parameters: parameters);
       return result;
     } else {
       final result = await _executeFluctuationLocalConnection();
@@ -60,7 +61,8 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
   }) async {
     final isConnected = await _networkStatus.isConnected;
     if (isConnected) {
-      final result = await _executeAllCurrenciesRemoteConnection(parameters: parameters);
+      final result =
+          await _executeAllCurrenciesRemoteConnection(parameters: parameters);
       return result;
     } else {
       final result = await _executeAllCurrenciesLocalConnection();
@@ -76,32 +78,38 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
     final isConnected = await _networkStatus.isConnected;
     if (isConnected) {
       try {
-        final response = await _currencyExchangeDataSource.getConvertCurrency(parameters: parameters);
+        final response = await _currencyExchangeDataSource.getConvertCurrency(
+            parameters: parameters);
         statusCode = response.statusCode;
         if (statusCode == 200) {
-          final result = CurrencyConversionModel.fromJson(AppConstants.handleResponseAsJson(response));
+          final result = CurrencyConversionModel.fromJson(
+              AppConstants.handleResponseAsJson(response));
           return Result.success(result);
         } else {
           throw Exception(response.data['message']);
         }
       } catch (error) {
         _logger.e(error);
-        return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
+        return Result.failure(
+            ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
       }
     } else {
       return Result.failure(DataSource.noInternetConnection.getFailure());
     }
   }
 
-  Future<Result<FluctuationCurrenciesModel>> _executeFluctuationRemoteConnection({
+  Future<Result<FluctuationCurrenciesModel>>
+      _executeFluctuationRemoteConnection({
     required CurrencyExchangeParametersModel parameters,
   }) async {
     int? statusCode;
     try {
-      final response = await _currencyExchangeDataSource.getFluctuationCurrencies(parameters: parameters);
+      final response = await _currencyExchangeDataSource
+          .getFluctuationCurrencies(parameters: parameters);
       statusCode = response.statusCode;
       if (statusCode == 200) {
-        final result = FluctuationCurrenciesModel.fromJson(AppConstants.handleResponseAsJson(response));
+        final result = FluctuationCurrenciesModel.fromJson(
+            AppConstants.handleResponseAsJson(response));
         _currencyExchangeLocalDataSource.cacheFluctuationCurrencies(result);
         return Result.success(result);
       } else {
@@ -109,7 +117,8 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
       }
     } catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
+      return Result.failure(
+          ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
     }
   }
 
@@ -119,10 +128,12 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
     int? statusCode;
 
     try {
-      final response = await _currencyExchangeDataSource.getAllCurrencies(parameters: parameters);
+      final response = await _currencyExchangeDataSource.getAllCurrencies(
+          parameters: parameters);
       statusCode = response.statusCode;
       if (statusCode == 200) {
-        final result = AllCurrenciesModel.fromJson(AppConstants.handleResponseAsJson(response));
+        final result = AllCurrenciesModel.fromJson(
+            AppConstants.handleResponseAsJson(response));
         _currencyExchangeLocalDataSource.cacheAllCurrencies(result);
         return Result.success(result);
       } else {
@@ -130,27 +141,36 @@ class CurrencyExchangeRepositoryImp extends CurrencyExchangeRepository {
       }
     } catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
+      return Result.failure(
+          ErrorHandler.handle(error, statusCode: statusCode).failureHandler);
     }
   }
 
-  Future<Result<FluctuationCurrenciesModel>> _executeFluctuationLocalConnection() async {
+  Future<Result<FluctuationCurrenciesModel>>
+      _executeFluctuationLocalConnection() async {
     try {
-      final localRandomQuote = await _currencyExchangeLocalDataSource.getFluctuationCurrencies();
+      final localRandomQuote =
+          await _currencyExchangeLocalDataSource.getFluctuationCurrencies();
       return Result.success(localRandomQuote);
     } on LocalFailure catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: ResponseCode.cacheError).failureHandler);
+      return Result.failure(
+          ErrorHandler.handle(error, statusCode: ResponseCode.cacheError)
+              .failureHandler);
     }
   }
 
-  Future<Result<AllCurrenciesModel>> _executeAllCurrenciesLocalConnection() async {
+  Future<Result<AllCurrenciesModel>>
+      _executeAllCurrenciesLocalConnection() async {
     try {
-      final localRandomQuote = await _currencyExchangeLocalDataSource.getAllCurrencies();
+      final localRandomQuote =
+          await _currencyExchangeLocalDataSource.getAllCurrencies();
       return Result.success(localRandomQuote);
     } on LocalFailure catch (error) {
       _logger.e(error);
-      return Result.failure(ErrorHandler.handle(error, statusCode: ResponseCode.cacheError).failureHandler);
+      return Result.failure(
+          ErrorHandler.handle(error, statusCode: ResponseCode.cacheError)
+              .failureHandler);
     }
   }
 }
