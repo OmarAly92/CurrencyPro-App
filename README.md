@@ -22,3 +22,6 @@ Currency Pro is your go-to companion for real-time currency and gold price track
 ## Demo video:
 
 https://github.com/OmarAly92/CurrencyPro-App/assets/114154073/847219ce-2fe7-471a-9431-2d6db4ca9904
+
+### If you want to try the App here is a beta version
+https://github.com/OmarAly92/CurrencyPro-App/releases/download/beta/currencypro-release.apk
